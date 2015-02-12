@@ -1,0 +1,592 @@
+-- MySQL dump 10.13  Distrib 5.5.32, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: localcommuter
+-- ------------------------------------------------------
+-- Server version	5.5.32-0ubuntu0.13.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `auth_group`
+--
+
+DROP TABLE IF EXISTS `auth_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group`
+--
+
+LOCK TABLES `auth_group` WRITE;
+/*!40000 ALTER TABLE `auth_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_group_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_group_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_group_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `group_id` (`group_id`,`permission_id`),
+  KEY `auth_group_permissions_bda51c3c` (`group_id`),
+  KEY `auth_group_permissions_1e014c8f` (`permission_id`),
+  CONSTRAINT `group_id_refs_id_3cea63fe` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `permission_id_refs_id_a7792de1` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group_permissions`
+--
+
+LOCK TABLES `auth_group_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_group_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_permission`
+--
+
+DROP TABLE IF EXISTS `auth_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `content_type_id` int(11) NOT NULL,
+  `codename` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `content_type_id` (`content_type_id`,`codename`),
+  KEY `auth_permission_e4470c6e` (`content_type_id`),
+  CONSTRAINT `content_type_id_refs_id_728de91f` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_permission`
+--
+
+LOCK TABLES `auth_permission` WRITE;
+/*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
+INSERT INTO `auth_permission` VALUES (1,'Can add permission',1,'add_permission'),(2,'Can change permission',1,'change_permission'),(3,'Can delete permission',1,'delete_permission'),(4,'Can add group',2,'add_group'),(5,'Can change group',2,'change_group'),(6,'Can delete group',2,'delete_group'),(7,'Can add user',3,'add_user'),(8,'Can change user',3,'change_user'),(9,'Can delete user',3,'delete_user'),(10,'Can add content type',4,'add_contenttype'),(11,'Can change content type',4,'change_contenttype'),(12,'Can delete content type',4,'delete_contenttype'),(13,'Can add session',5,'add_session'),(14,'Can change session',5,'change_session'),(15,'Can delete session',5,'delete_session'),(16,'Can add site',6,'add_site'),(17,'Can change site',6,'change_site'),(18,'Can delete site',6,'delete_site'),(19,'Can add migration history',7,'add_migrationhistory'),(20,'Can change migration history',7,'change_migrationhistory'),(21,'Can delete migration history',7,'delete_migrationhistory'),(22,'Can add log entry',8,'add_logentry'),(23,'Can change log entry',8,'change_logentry'),(24,'Can delete log entry',8,'delete_logentry'),(25,'Can add sistema transporte',9,'add_sistematransporte'),(26,'Can change sistema transporte',9,'change_sistematransporte'),(27,'Can delete sistema transporte',9,'delete_sistematransporte'),(28,'Can add linea',10,'add_linea'),(29,'Can change linea',10,'change_linea'),(30,'Can delete linea',10,'delete_linea'),(31,'Can add parada',11,'add_parada'),(32,'Can change parada',11,'change_parada'),(33,'Can delete parada',11,'delete_parada'),(37,'Can add ruta linea',13,'add_rutalinea'),(38,'Can change ruta linea',13,'change_rutalinea'),(39,'Can delete ruta linea',13,'delete_rutalinea'),(40,'Can add horarios',14,'add_horarios'),(41,'Can change horarios',14,'change_horarios'),(42,'Can delete horarios',14,'delete_horarios'),(43,'Can add linea tipo frec',15,'add_lineatipofrec'),(44,'Can change linea tipo frec',15,'change_lineatipofrec'),(45,'Can delete linea tipo frec',15,'delete_lineatipofrec'),(46,'Can add csv import',16,'add_csvimport'),(47,'Can change csv import',16,'change_csvimport'),(48,'Can delete csv import',16,'delete_csvimport'),(49,'Can add import model',17,'add_importmodel'),(50,'Can change import model',17,'change_importmodel'),(51,'Can delete import model',17,'delete_importmodel');
+/*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user`
+--
+
+DROP TABLE IF EXISTS `auth_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `first_name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `last_name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `last_login` datetime NOT NULL,
+  `date_joined` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user`
+--
+
+LOCK TABLES `auth_user` WRITE;
+/*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
+INSERT INTO `auth_user` VALUES (1,'serpiko','','','raul@ingravido.com','pbkdf2_sha256$10000$368tRdoZtVsN$IF190ovT9/OzAEYIcuIHSCzOxVyakwxdyEZafJ1eLTE=',1,1,1,'2013-08-17 23:11:55','2013-07-11 16:26:32');
+/*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_groups`
+--
+
+DROP TABLE IF EXISTS `auth_user_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user_groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`group_id`),
+  KEY `auth_user_groups_fbfc09f1` (`user_id`),
+  KEY `auth_user_groups_bda51c3c` (`group_id`),
+  CONSTRAINT `group_id_refs_id_f0ee9890` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `user_id_refs_id_831107f1` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_groups`
+--
+
+LOCK TABLES `auth_user_groups` WRITE;
+/*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_user_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_user_user_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user_user_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`permission_id`),
+  KEY `auth_user_user_permissions_fbfc09f1` (`user_id`),
+  KEY `auth_user_user_permissions_1e014c8f` (`permission_id`),
+  CONSTRAINT `permission_id_refs_id_67e79cb` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `user_id_refs_id_f2045483` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_user_permissions`
+--
+
+LOCK TABLES `auth_user_user_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_user_user_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_user_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `csvimport_csvimport`
+--
+
+DROP TABLE IF EXISTS `csvimport_csvimport`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `csvimport_csvimport` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `model_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `field_list` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `upload_file` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `file_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `encoding` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `upload_method` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `error_log` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `import_date` date NOT NULL,
+  `import_user` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `csvimport_csvimport`
+--
+
+LOCK TABLES `csvimport_csvimport` WRITE;
+/*!40000 ALTER TABLE `csvimport_csvimport` DISABLE KEYS */;
+INSERT INTO `csvimport_csvimport` VALUES (2,'localcommuter.Linea','column1=\'_id\',column2=\'name\',column3=\'sistematransporte_id\'','csv/localcommuter_linea.csv','csv/localcommuter_linea.csv','','manual','No fields in the CSV file match localcommuter.Linea\n\n                                   - you must add a header field name row\n                                   to the CSV file or supply a mapping list','2013-08-17','serpiko'),(3,'localcommuter.Parada','','csv/parada.csv','csv/parada.csv','','manual','No fields in the CSV file match localcommuter.Parada\n\n                                   - you must add a header field name row\n                                   to the CSV file or supply a mapping list','2013-08-17','serpiko');
+/*!40000 ALTER TABLE `csvimport_csvimport` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `csvimport_importmodel`
+--
+
+DROP TABLE IF EXISTS `csvimport_importmodel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `csvimport_importmodel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `csvimport_id` int(11) NOT NULL,
+  `numeric_id` int(10) unsigned NOT NULL,
+  `natural_key` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `csvimport_importmodel_fe08e486` (`csvimport_id`),
+  CONSTRAINT `csvimport_id_refs_id_8d3261cc` FOREIGN KEY (`csvimport_id`) REFERENCES `csvimport_csvimport` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `csvimport_importmodel`
+--
+
+LOCK TABLES `csvimport_importmodel` WRITE;
+/*!40000 ALTER TABLE `csvimport_importmodel` DISABLE KEYS */;
+/*!40000 ALTER TABLE `csvimport_importmodel` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_admin_log`
+--
+
+DROP TABLE IF EXISTS `django_admin_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_admin_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `action_time` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `content_type_id` int(11) DEFAULT NULL,
+  `object_id` longtext COLLATE utf8_unicode_ci,
+  `object_repr` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `action_flag` smallint(5) unsigned NOT NULL,
+  `change_message` longtext COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `django_admin_log_fbfc09f1` (`user_id`),
+  KEY `django_admin_log_e4470c6e` (`content_type_id`),
+  CONSTRAINT `content_type_id_refs_id_288599e6` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  CONSTRAINT `user_id_refs_id_c8665aa` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_admin_log`
+--
+
+LOCK TABLES `django_admin_log` WRITE;
+/*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
+INSERT INTO `django_admin_log` VALUES (1,'2013-08-17 23:14:07',1,9,'1','EMTPalma',1,''),(2,'2013-08-18 00:01:11',1,16,'2','csv/localcommuter_linea.csv',1,''),(3,'2013-08-18 00:03:36',1,16,'2','csv/localcommuter_linea.csv',2,'Changed field_list.'),(4,'2013-08-18 00:16:32',1,16,'3','csv/parada.csv',1,'');
+/*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_content_type`
+--
+
+DROP TABLE IF EXISTS `django_content_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_content_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `app_label` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `model` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `app_label` (`app_label`,`model`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_content_type`
+--
+
+LOCK TABLES `django_content_type` WRITE;
+/*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
+INSERT INTO `django_content_type` VALUES (1,'permission','auth','permission'),(2,'group','auth','group'),(3,'user','auth','user'),(4,'content type','contenttypes','contenttype'),(5,'session','sessions','session'),(6,'site','sites','site'),(7,'migration history','south','migrationhistory'),(8,'log entry','admin','logentry'),(9,'sistema transporte','localcommuter','sistematransporte'),(10,'linea','localcommuter','linea'),(11,'parada','localcommuter','parada'),(13,'ruta linea','localcommuter','rutalinea'),(14,'horarios','localcommuter','horarios'),(15,'linea tipo frec','localcommuter','lineatipofrec'),(16,'csv import','csvimport','csvimport'),(17,'import model','csvimport','importmodel');
+/*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_session`
+--
+
+DROP TABLE IF EXISTS `django_session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_session` (
+  `session_key` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `session_data` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `expire_date` datetime NOT NULL,
+  PRIMARY KEY (`session_key`),
+  KEY `django_session_c25c2c28` (`expire_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_session`
+--
+
+LOCK TABLES `django_session` WRITE;
+/*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+INSERT INTO `django_session` VALUES ('08f6d4d0a4c652bdfe37b3241845a947','M2JkMWRlZmRkYzRhNTA1MzM4NWE2MzlkYzM3OTE2NTQ5ZTE0MjdkOTqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQF1Lg==\n','2013-07-25 20:16:44'),('9ljxf568w6zfa0fulduvzo5nstrgnt8y','M2JkMWRlZmRkYzRhNTA1MzM4NWE2MzlkYzM3OTE2NTQ5ZTE0MjdkOTqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQSKAQF1Lg==','2013-08-31 23:11:55'),('ilcfbcms33l7cd1jpzye0szzy9go6fgq','M2JkMWRlZmRkYzRhNTA1MzM4NWE2MzlkYzM3OTE2NTQ5ZTE0MjdkOTqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQSKAQF1Lg==','2013-08-31 23:00:53');
+/*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_site`
+--
+
+DROP TABLE IF EXISTS `django_site`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_site` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `domain` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_site`
+--
+
+LOCK TABLES `django_site` WRITE;
+/*!40000 ALTER TABLE `django_site` DISABLE KEYS */;
+INSERT INTO `django_site` VALUES (1,'example.com','example.com');
+/*!40000 ALTER TABLE `django_site` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `localcommuter_horarios`
+--
+
+DROP TABLE IF EXISTS `localcommuter_horarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `localcommuter_horarios` (
+  `_id` int(11) NOT NULL,
+  `numlinea_id` int(11) NOT NULL,
+  `numparada_id` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `gpx_user` double NOT NULL,
+  `gpy_user` double NOT NULL,
+  PRIMARY KEY (`_id`),
+  KEY `localcommuter_horarios_dd76b3db` (`numlinea_id`),
+  KEY `localcommuter_horarios_1bfb5a56` (`numparada_id`),
+  CONSTRAINT `numlinea_id_refs__id_d6fed514` FOREIGN KEY (`numlinea_id`) REFERENCES `localcommuter_linea` (`_id`),
+  CONSTRAINT `numparada_id_refs__id_c15821fd` FOREIGN KEY (`numparada_id`) REFERENCES `localcommuter_parada` (`_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `localcommuter_horarios`
+--
+
+LOCK TABLES `localcommuter_horarios` WRITE;
+/*!40000 ALTER TABLE `localcommuter_horarios` DISABLE KEYS */;
+INSERT INTO `localcommuter_horarios` VALUES (1,8,333,'2013-08-20',33.3,2.6);
+/*!40000 ALTER TABLE `localcommuter_horarios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `localcommuter_linea`
+--
+
+DROP TABLE IF EXISTS `localcommuter_linea`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `localcommuter_linea` (
+  `_id` int(11) NOT NULL,
+  `name` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `sistematransporte_id` int(11) NOT NULL,
+  PRIMARY KEY (`_id`),
+  KEY `localcommuter_linea_a7e05579` (`sistematransporte_id`),
+  CONSTRAINT `sistematransporte_id_refs__id_fbd6e3e2` FOREIGN KEY (`sistematransporte_id`) REFERENCES `localcommuter_sistematransporte` (`_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `localcommuter_linea`
+--
+
+LOCK TABLES `localcommuter_linea` WRITE;
+/*!40000 ALTER TABLE `localcommuter_linea` DISABLE KEYS */;
+INSERT INTO `localcommuter_linea` VALUES (1,'\'Aeroport-Ciutat-Port\'',1),(2,'\'CircumvalÂ·laciÃ³ Centre',1),(3,'\'Es Pont d\\\'Inca - Illete',1),(5,'\'Es Rafal Nou-Son Dureta\'',1),(6,'\'PolÃ­gon de Llevant - Ca',1),(7,'\'Son Rapinya - Son Gotleu',1),(8,'\'Son Roca\'',1),(9,'\'Son Espanyol\'',1),(10,'\'Son Cladera - Sa Indiote',1),(11,'\'Sa Indioteria\'',1),(12,'\'Son Sardina - PolÃ­gon d',1),(14,'\'Son Ferriol\'',1),(15,'\'Platja de Palma - PlaÃ§a',1),(16,'\'Establiments-Son Fuster\'',1),(18,'\'Son Riera\'',1),(19,'\'Universitat\'',1),(20,'\'Sant AgustÃ­- Son Espase',1),(21,'\'S\\\'Arenal - Aeropuerto\'',1),(23,'\'Palma-S\\\'Arenal-Cala Bla',1),(24,'\'Son LlÃ tzer-Son Hugo\'',1),(25,'\'Platja de Palma per auto',1),(28,'\'Son LlÃ tzer circular\'',1),(29,'\'Circular Son Espases\'',1),(30,'\'Sant Joan de DÃ©u\'',1),(31,'\'Palma-S\\\'Aranjassa-Sant ',1),(33,'\'Son Espases\'',1),(34,'\'Son Espases-Es Rafal\'',1),(41,'\'Bus de Nit\'',1),(46,'\'GÃ¨nova - Sant AgustÃ­\'',1),(50,'\'Bus TurÃ­stic\'',1);
+/*!40000 ALTER TABLE `localcommuter_linea` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `localcommuter_lineatipofrec`
+--
+
+DROP TABLE IF EXISTS `localcommuter_lineatipofrec`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `localcommuter_lineatipofrec` (
+  `_id` int(11) NOT NULL,
+  `numlinea_id` int(11) NOT NULL,
+  `tipofrec` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `frec` int(11) NOT NULL,
+  PRIMARY KEY (`_id`),
+  KEY `localcommuter_lineatipofrec_dd76b3db` (`numlinea_id`),
+  CONSTRAINT `numlinea_id_refs__id_dc6e5f73` FOREIGN KEY (`numlinea_id`) REFERENCES `localcommuter_linea` (`_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `localcommuter_lineatipofrec`
+--
+
+LOCK TABLES `localcommuter_lineatipofrec` WRITE;
+/*!40000 ALTER TABLE `localcommuter_lineatipofrec` DISABLE KEYS */;
+/*!40000 ALTER TABLE `localcommuter_lineatipofrec` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `localcommuter_linetipofrec`
+--
+
+DROP TABLE IF EXISTS `localcommuter_linetipofrec`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `localcommuter_linetipofrec` (
+  `_id` int(11) NOT NULL,
+  `numlinea_id` int(11) NOT NULL,
+  `tipofrec` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `frec` int(11) NOT NULL,
+  PRIMARY KEY (`_id`),
+  KEY `localcommuter_linetipofrec_dd76b3db` (`numlinea_id`),
+  CONSTRAINT `numlinea_id_refs__id_1f6a86ed` FOREIGN KEY (`numlinea_id`) REFERENCES `localcommuter_linea` (`_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `localcommuter_linetipofrec`
+--
+
+LOCK TABLES `localcommuter_linetipofrec` WRITE;
+/*!40000 ALTER TABLE `localcommuter_linetipofrec` DISABLE KEYS */;
+/*!40000 ALTER TABLE `localcommuter_linetipofrec` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `localcommuter_parada`
+--
+
+DROP TABLE IF EXISTS `localcommuter_parada`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `localcommuter_parada` (
+  `_id` int(11) NOT NULL,
+  `name` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `lat` double NOT NULL,
+  `long` double NOT NULL,
+  PRIMARY KEY (`_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `localcommuter_parada`
+--
+
+LOCK TABLES `localcommuter_parada` WRITE;
+/*!40000 ALTER TABLE `localcommuter_parada` DISABLE KEYS */;
+INSERT INTO `localcommuter_parada` VALUES (0,'\' Placa d\'Espanya (Estaci',0,0),(1,' Porta de Sant Antoni',39.57164001464844,2.6555631160736084),(2,'\' Placa d\'\'Espanya (Estac',39.57563781738281,2.6544721126556396),(3,' Comte de Sallent 8',39.57807922363281,2.6509079933166504),(4,' Biniamar 10',39.582191467285156,2.680917978286743),(6,' Porta de Sant Antoni',39.571327209472656,2.656018018722534),(7,' Placa de la Reina',39.568973541259766,2.6461920738220215),(8,' Es Jonquet',39.56925582885742,2.6379361152648926),(9,' Passeig Maritim 2',39.56886291503906,2.6339919567108154),(10,' Auditorium',39.56640625,2.628894090652466),(11,' Passeig Maritim 33',39.56281280517578,2.6271090507507324),(12,' Can Barbera',39.55937957763672,2.626497983932495),(13,' Arago 271',39.592594146728516,2.68210506439209),(14,' Club de Mar',39.554420471191406,2.6235098838806152),(15,' Port de Palma (Estacio M',39.55234146118164,2.6236839294433594),(16,'\' Dic de l\'\'Oest 2\'',39.54964828491211,2.618683099746704),(17,' Museu de Sant Carles',39.545326232910156,2.619986057281494),(18,' Escola de Nautica',39.54536819458008,2.623711109161377),(19,' Passeig Mallorca 38',39.57499694824219,2.644334077835083),(20,' Passeig Mallorca 18',39.57300567626953,2.642328977584839),(23,' Museu de Sant Carles',39.54553985595703,2.620753049850464),(25,'\' Dic de l\'\'Oest 1\'',39.54951477050781,2.6189279556274414),(26,' Port de Palma (Estacio M',39.55315017700195,2.6261589527130127),(27,' Club de Mar',39.55466079711914,2.624311923980713),(28,' Can Barbera',39.55911636352539,2.626720905303955),(29,' Passeig Maritim 33',39.562843322753906,2.627737045288086),(30,' Auditorium',39.56735610961914,2.630250930786133),(31,' Passeig Maritim 7',39.568416595458984,2.6322131156921387),(32,' Indalecio Prieto 48',39.58047866821289,2.6772119998931885),(34,' Son Bonet',39.59990310668945,2.6967010498046875),(35,' Antoni Maura 73',39.59880065917969,2.694387912750244),(36,' Antoni Maura 29',39.59691619873047,2.691344976425171),(37,' Verge de Lluc',39.5953483581543,2.6874380111694336),(38,' Son Rutlan',39.59390640258789,2.6844050884246826),(39,' Arago 257',39.59081268310547,2.6791200637817383),(40,' Arago 224',39.58937454223633,2.677088975906372),(41,' Arago 209 (Son Fuster)',39.58744812011719,2.67466402053833),(42,' Arago 185',39.58549499511719,2.672576904296875),(43,' Can Capes',39.582664489746094,2.6685500144958496),(44,' Arago 135',39.581298828125,2.666646957397461),(45,' Els Hostalets',39.57936096191406,2.6638150215148926),(46,' Arago 47',39.57749557495117,2.6609129905700684),(47,' Arago 25',39.574649810791016,2.658482074737549),(48,' Grans magatzems',39.57305908203125,2.6566150188446045),(49,' Grans magatzems',39.573123931884766,2.6571500301361084),(50,' Via Roma (Clinica Rotger',39.57517623901367,2.6477088928222656),(51,' La Rambla',39.573577880859375,2.649266004562378),(52,' Placa del Mercat (Audien',39.57155227661133,2.649519920349121),(53,' Placa del Rei Joan Carle',39.571563720703125,2.646981954574585),(54,' Jaume III  22',39.57243347167969,2.6435670852661133),(55,' Catalunya 2',39.5728874206543,2.6411659717559814),(56,' Comte de Barcelona 24',39.5736083984375,2.6388449668884277),(57,' Placa del Progres',39.572113037109375,2.6362569332122803),(58,' Marques de la Senia 12',39.56969451904297,2.632112979888916),(59,' Marques de la Senia 40',39.568199157714844,2.62931489944458),(60,' Joan Miro 16',39.56684112548828,2.6269819736480713),(61,' Joan Miro 24',39.5653076171875,2.6264429092407227),(62,' Placa Gomila',39.56295394897461,2.6255710124969482),(63,' Joan Miro 110',39.55897521972656,2.624277114868164),(64,' Joan Miro 144',39.5574836730957,2.622853994369507),(65,' Portopi (centre comercia',39.55201721191406,2.621009111404419),(66,' Joan Miro 194',39.551300048828125,2.6190109252929688),(67,' Joan Miro 248 (Palau de ',39.551822662353516,2.6116409301757812),(69,' Joan Miro 270 (Hotel Nix',39.552730560302734,2.6080970764160156),(71,' Cala Major',39.55326843261719,2.604811906814575),(73,' Cala Nova',39.55034637451172,2.5985660552978516),(74,' Picasso 30',39.57390594482422,2.624756097793579),(75,' Cra. Andratx (Hotel Mari',39.54735565185547,2.595592975616455),(76,'\' Passeig d\'\'Illetes 4\'',39.54399490356445,2.5955190658569336),(77,'\' Passeig d\'\'Illetes 16\'',39.54237365722656,2.5940499305725098),(78,'\' Passeig d\'\'Illetes (Hot',39.54106521606445,2.5934300422668457),(79,'\' Passeig d\'\'Illetes 36\'',39.54022979736328,2.591059923171997),(80,' Sindicat',39.57237243652344,2.656024932861328),(81,' Joan Miro 145',39.554935455322266,2.623344898223877),(82,' Joan Miro 166',39.55430221557617,2.622976064682007),(83,' Joan Maragall 35',39.56252670288086,2.665397882461548),(84,' Joan Maragall 42',39.56247329711914,2.6660380363464355),(85,'\' Passeig d\'\'Illetes 43\'',39.53863525390625,2.590941905975342),(86,' Cra. Andratx (Hotel Mari',39.54755401611328,2.596266031265259),(87,' Cala Nova',39.55023956298828,2.598602056503296),(89,' Cala Major',39.55343246459961,2.6049389839172363),(90,' Joan Miro 273',39.553077697753906,2.606534957885742),(91,' Joan Miro 243 (Palau de ',39.5511360168457,2.610642910003662),(92,' Joan Miro 227',39.55210876464844,2.6135940551757812),(93,'\' Passeig d\'\'Illetes 57 (',39.53618621826172,2.589268922805786),(94,' Portopi (centre comercia',39.55241775512695,2.62165904045105),(95,' Joan Miro 121',39.55733108520508,2.623051881790161),(96,' Joan Miro 83',39.55897521972656,2.6243820190429688),(97,' Placa Gomila',39.56295394897461,2.625699043273926),(98,'\' L\'\'Aigua Dolca\'',39.56520080566406,2.627269983291626),(99,' General Ricardo Ortega 4',39.56938171386719,2.6625471115112305),(100,' Marques de la Senia 37',39.56830978393555,2.6297099590301514),(101,' Marques de la Senia 11',39.56966018676758,2.6323230266571045),(102,' Placa del Progres',39.572086334228516,2.636523962020874),(103,' Caro 7',39.57272720336914,2.6395370960235596),(104,' Jaume III   21',39.57234573364258,2.643404006958008),(105,' Placa del Rei Joan Carle',39.571407318115234,2.647296905517578),(106,' Placa del Mercat (Audien',39.57146072387695,2.6498589515686035),(107,' La Rambla',39.57328414916992,2.650001049041748),(108,' Baro de Pinopar 14',39.57634735107422,2.647749900817871),(109,'\' Passeig d\'\'Illetes 77\'',39.53714370727539,2.5898220539093018),(110,' Joan March 7',39.576805114746094,2.652940034866333),(111,' Alexandre Rossello 27',39.57450485229492,2.6553969383239746),(112,'\' Passeig d\'\'Illetes 62\'',39.53856658935547,2.592082977294922),(113,' Arago 20',39.57450866699219,2.6585519313812256),(114,' Arago 44',39.57682800292969,2.6602060794830322),(115,' Els Hostalets',39.578853607177734,2.6633400917053223),(116,' Arago 134',39.581207275390625,2.6667640209198),(117,' Can Capes',39.58269119262695,2.6688640117645264),(118,' Arago 184',39.58547592163086,2.672903060913086),(119,' Arago 216',39.587528228759766,2.6751179695129395),(120,' Son Fuster',39.58932876586914,2.677462100982666),(121,' Arago 256',39.59127426147461,2.6802709102630615),(122,' Arago 286',39.592586517333984,2.6825709342956543),(123,' Son Rutlan',39.593753814697266,2.6846160888671875),(124,' Verge de Lluc',39.59549331665039,2.6881020069122314),(125,' Antoni Maura 8',39.59689712524414,2.6915080547332764),(126,' Antoni Maura 42',39.598873138427734,2.6947720050811768),(127,' Alemanya 6',39.57815933227539,2.6482648849487305),(128,'\' Passeig d\'\'Illetes 64\'',39.53997039794922,2.592190980911255),(129,' La Feixina',39.570213317871094,2.6396310329437256),(130,' Cami Vell de Sineu',39.57881546020508,2.7166810035705566),(131,' Placa del Progres',39.57193374633789,2.6359550952911377),(132,' Andrea Doria 6',39.57048034667969,2.6326329708099365),(133,' Andrea Doria 22',39.570613861083984,2.6290109157562256),(134,' Andrea Doria 42',39.57090377807617,2.62678599357605),(135,' Andrea Doria 62',39.57200622558594,2.622286081314087),(136,' Cami de Genova 100',39.573726654052734,2.6136019229888916),(137,' Base Militar',39.574012756347656,2.609898090362549),(138,'\' Passeig d\'\'Illetes (Hot',39.540958404541016,2.5934650897979736),(139,' Cami dels Reis 83',39.56597137451172,2.6016080379486084),(140,' Cami dels Reis 47',39.56404113769531,2.600816011428833),(141,' Cami dels Reis 19',39.56147003173828,2.599666118621826),(142,' Cementeri',39.55727767944336,2.596256971359253),(143,' Paradis (Hotel Belvedere',39.5538215637207,2.59796404838562),(144,' Cami de la Real 56',39.6300163269043,2.639414072036743),(145,'\' Passeig d\'\'Illetes 9\'',39.54309844970703,2.59517502784729),(146,' Cementeri',39.55820083618164,2.5973799228668213),(147,' Cami dels Reis 12',39.56099319458008,2.599553108215332),(148,' Cami dels Reis 38',39.56410598754883,2.6009089946746826),(149,' Cami dels Reis 60',39.5659294128418,2.601677894592285),(151,' Base Militar',39.57386779785156,2.6103179454803467),(153,' Son Dureta',39.571754455566406,2.622683048248291),(154,' Andrea Doria 41',39.57101058959961,2.6261799335479736),(155,' Andrea Doria 25',39.57052230834961,2.628709077835083),(156,' Andrea Doria 7',39.57045364379883,2.6319580078125),(157,' Francesc Vidal i Sureda ',39.55772399902344,2.621735095977783),(158,' Francesc Vidal i Sureda ',39.5567626953125,2.6205179691314697),(159,' F. Vidal i Sureda (Hotel',39.555702209472656,2.6204190254211426),(160,' Francesc Vidal i Sureda ',39.55636978149414,2.6180410385131836),(161,' Francesc Vidal i Sureda ',39.55769729614258,2.6163570880889893),(162,' Francesc Vidal i Sureda ',39.55802917480469,2.613339900970459),(163,' F. Vidal i Sureda 74 (Re',39.559791564941406,2.6100358963012695),(164,' Francesc Vidal i Sureda ',39.56067657470703,2.6071910858154297),(165,' Cami de Genova 60',39.57335662841797,2.6159679889678955),(166,' Francesc Vidal i Sureda',39.5579948425293,2.619602918624878),(167,' Saridakis 53',39.558692932128906,2.607295036315918),(168,' Saridakis 54',39.5590705871582,2.6072471141815186),(169,' Les Meravelles',39.52193832397461,2.7512099742889404),(170,' Francesc Vidal i Sureda ',39.56050491333008,2.6073429584503174),(171,' La Bonanova',39.55960464477539,2.6101999282836914),(172,' Francesc Vidal i Sureda ',39.55796813964844,2.613607883453369),(173,' Francesc Vidal i Sureda ',39.55769729614258,2.6162519454956055),(174,' Francesc Vidal i Sureda ',39.55659484863281,2.617655038833618),(175,' F. Vidal i Sureda 21 (Ho',39.55561065673828,2.6207571029663086),(176,' Francesc Vidal i Sureda ',39.55678176879883,2.620621919631958),(177,' Francesc Vidal i Sureda ',39.55764389038086,2.6219561100006104),(182,' Mestre Chapi 25',39.58953094482422,2.6827359199523926),(183,' Heura 41',39.58808135986328,2.6792149543762207),(184,' Heura 19',39.586063385009766,2.6768128871917725),(185,' Heura 8',39.58464431762695,2.6750619411468506),(186,' Pare Joan Crespi 7',39.58323669433594,2.6733100414276123),(187,' Mare de Deu de Montserra',39.582454681396484,2.6739308834075928),(188,' Indalecio Prieto 35',39.579917907714844,2.675839900970459),(189,' Indalecio Prieto 27',39.57799530029297,2.6715760231018066),(190,' Placa de Miquel Dolc',39.576995849609375,2.6688098907470703),(191,' Arquebisbe Aspareg 61',39.57640838623047,2.6679630279541016),(192,' Arquebisbe Aspareg 5',39.575111389160156,2.6650350093841553),(193,' Francesc Manuel de los H',39.57451248168945,2.66367506980896),(194,' Francesc Manuel de los H',39.573524475097656,2.661432981491089),(195,' Grans magatzems',39.57330322265625,2.656322956085205),(196,' Cra. Militar',39.527400970458984,2.7641639709472656),(197,' Instituts',39.57642364501953,2.6456069946289062),(198,' Placa del Forti',39.576316833496094,2.643721103668213),(199,' Mestre Chapi 13',39.588924407958984,2.6810390949249268),(200,' Cami 140',39.628238677978516,2.668658971786499),(201,' Cami dels Reis 648',39.61404800415039,2.6752500534057617),(202,' La Porciuncula',39.51823425292969,2.7492570877075195),(203,' Passeig Mallorca 7',39.57349395751953,2.6421520709991455),(205,' Instituts',39.57612228393555,2.6451079845428467),(207,' Nuredduna 18',39.57302474975586,2.659980058670044),(208,' Francesc Manuel de los H',39.57343292236328,2.6615500450134277),(209,' Francesc Manuel de los H',39.574424743652344,2.6637799739837646),(210,' Arquebisbe Aspareg 8',39.57504653930664,2.6651980876922607),(211,' Arquebisbe Aspareg 64',39.57638931274414,2.6682069301605225),(212,' Indalecio Prieto 14',39.57711410522461,2.6697869300842285),(213,' Indalecio Prieto 44',39.57854080200195,2.672982931137085),(214,' Mare de Deu de Montserra',39.58049392700195,2.6762800216674805),(215,' Jeroni Boscana 24',39.58277130126953,2.6749539375305176),(216,' Baladre 2',39.583370208740234,2.676814079284668),(217,'\' Avinguda d\'\'America (Ho',39.513553619384766,2.751636028289795),(219,'\' Placa d\'\'Espanya (219)\'',39.5758171081543,2.6542611122131348),(220,' Industria 8',39.573646545410156,2.63995099067688),(221,' Industria 44',39.57561492919922,2.6373329162597656),(222,' Llibertat 22',39.57724380493164,2.6342039108276367),(223,' Llibertat 36',39.57801055908203,2.6316959857940674),(224,' Dragonera 14',39.57891082763672,2.628035068511963),(225,' Cami de Son Rapinya 4',39.57965850830078,2.626004934310913),(226,' Cami de Son Rapinya 26',39.58304977416992,2.6210029125213623),(227,' Cami de Son Rapinya 38',39.585693359375,2.617321014404297),(228,' Cami de Son Rapinya 46',39.58723068237305,2.6151459217071533),(229,' Cami de Son Rapinya 48',39.588356018066406,2.613032102584839),(230,' Cami de Son Rapinya 74',39.58940505981445,2.6107089519500732),(231,' Cami de Son Rapinya (Son',39.590328216552734,2.6070001125335693),(232,' Cami de Raixa',39.590396881103516,2.598090887069702),(233,' Cami de Raixa 11',39.591331481933594,2.5946619510650635),(234,' Hotel Son Vida',39.59294509887695,2.594722032546997),(236,' Capocorb 1',39.590171813964844,2.5982320308685303),(237,' Cami de Son Vida 109',39.59020233154297,2.606942892074585),(238,' Cami de Son Rapinya 105',39.58884811401367,2.6120049953460693),(239,' Cami de Son Rapinya 57',39.587032318115234,2.615391969680786),(240,' Cami de Son Rapinya 35',39.58591079711914,2.6169700622558594),(241,' Cami de Son Rapinya 29',39.5826530456543,2.6211678981781006),(242,' Cami de Son Rapinya 5',39.5797004699707,2.6253879070281982),(243,' Dragonera 19',39.57867431640625,2.628222942352295),(244,' Barrera 35',39.57720947265625,2.6316308975219727),(245,' Barrera 15',39.57542037963867,2.6330840587615967),(246,' Caro 53',39.57394790649414,2.634442090988159),(247,' Caro 23',39.57331466674805,2.6370999813079834),(248,' Carretera Militar 203',39.51070785522461,2.7564499378204346),(249,' Arxiduc Lluis Salvador 4',39.5805778503418,2.654994010925293),(250,' Arxiduc Lluis Salvador 5',39.58247375488281,2.656161069869995),(251,' Arxiduc Lluis Salvador 1',39.58501052856445,2.6577088832855225),(254,' Arxiduc Lluis Salvador 1',39.58806228637695,2.6595799922943115),(256,' Cami Vell de Bunyola 8',39.5911750793457,2.6677169799804688),(257,' Gremi de Sabaters 2',39.59678268432617,2.6714179515838623),(258,' Gremi de Sabaters 8',39.59885025024414,2.669625997543335),(259,'\' Avinguda d\'\'America (Ho',39.510189056396484,2.754939079284668),(260,' Emilia Sureda 35',39.589351654052734,2.657536029815674),(261,' Cra. Militar 161',39.5133056640625,2.7581160068511963),(262,'\' Poliesportiu Princeps d',39.60885238647461,2.6642661094665527),(263,' Gran Via Asima 25',39.6084098815918,2.6667959690093994),(266,' Santiago Alvarez 6',39.6064338684082,2.6757171154022217),(267,' Santiago Alvarez 1',39.605220794677734,2.676712989807129),(268,' Cami Vell de Bunyola 104',39.606056213378906,2.6786069869995117),(269,' Cami de na Cerdana 22',39.608253479003906,2.6789228916168213),(270,' Cami dels Reis 678',39.611419677734375,2.6766839027404785),(271,' Cami de na Cerdana 17',39.60918045043945,2.6781270503997803),(272,' Cami Vell de Bunyola 64',39.60552215576172,2.6781210899353027),(273,' Santiago Alvarez 8',39.60531997680664,2.6768290996551514),(274,' Jose Salazar 4',39.60673904418945,2.675050973892212),(275,' Gremi de Tintorers 10',39.6076545715332,2.6734399795532227),(276,' Gremi de Boters 37',39.60926055908203,2.671264886856079),(279,' Gremi de Sabaters 66',39.607486724853516,2.6621060371398926),(280,' Cami de les Meravelles (',39.52614974975586,2.7561750411987305),(281,' Cami de les Meravelles (',39.52836990356445,2.7577149868011475),(282,' Cra. Llucmajor 252',39.54148483276367,2.7727980613708496),(283,'\' S\'\'Aranjassa\'',39.54094696044922,2.775686025619507),(284,' Setze de Juliol 5',39.59516525268555,2.667057991027832),(285,' Cami Vell de Bunyola 7',39.591209411621094,2.6675660610198975),(286,' Cami de Can Peixet',39.54153060913086,2.7730770111083984),(287,' Arxiduc Lluis Salvador 1',39.588096618652344,2.6594290733337402),(289,' Arxiduc Lluis Salvador 8',39.5848388671875,2.6574299335479736),(290,' Arxiduc Lluis Salvador 4',39.58258056640625,2.6560559272766113),(291,' Rossello i Cazador 18',39.581539154052734,2.654757022857666),(295,'\' Placa d\'\'Espanya (295)\'',39.57593536376953,2.6541318893432617),(296,' Eusebi Estada 40',39.579830169677734,2.6584908962249756),(297,' Eusebi Estada 68',39.58256912231445,2.6610050201416016),(298,' Eusebi Estada 82',39.58477020263672,2.6626479625701904),(299,' Son Oliva',39.58659362792969,2.6634891033172607),(300,' Cra. Militar 22',39.54122543334961,2.770564079284668),(302,' Cami de les Meravelles',39.52817916870117,2.757564067840576),(304,' Gran Via Asima',39.6021728515625,2.6722419261932373),(307,' Cami Nou 39',39.605506896972656,2.6792619228363037),(308,' Picasso 50',39.576072692871094,2.6257450580596924),(309,' Centre de Salut',39.60047149658203,2.680171012878418),(310,' IES Juniper Serra',39.59943771362305,2.6772749423980713),(311,' Bartomeu Calatayud 30',39.59810256958008,2.677222967147827),(312,' Canonge Antoni Sancho 37',39.59730529785156,2.6788809299468994),(313,'\' Avinguda d\'\'America (Ho',39.51042175292969,2.754683017730713),(314,' Canonge Antoni Sancho 1',39.598148345947266,2.680624008178711),(315,' Cami Nou s/n',39.601348876953125,2.6806089878082275),(316,' Cami Nou 45',39.60592269897461,2.679202079772949),(322,' Son Oliva',39.586647033691406,2.663266897201538),(323,' Eusebi Estada 109',39.584716796875,2.662450075149536),(324,' Eusebi Estada 93',39.5828742980957,2.6610729694366455),(325,' Eusebi Estada 45',39.57918930053711,2.6575279235839844),(328,' Miquel dels Sants Oliver',39.5782356262207,2.6435248851776123),(329,' Placa de Barcelona',39.57974624633789,2.639488935470581),(330,' Francesc Marti i Mora 34',39.58167266845703,2.638256072998047),(331,' Francesc Marti i Mora 74',39.58405303955078,2.6362409591674805),(332,' Salvador Dali 5',39.58450698852539,2.6341309547424316),(333,' Policlinica Miramar',39.583702087402344,2.630326986312866),(334,' Son Moix',39.5870246887207,2.6270248889923096),(335,' Cami de sa Vileta 56',39.58973693847656,2.624263048171997),(336,' Cami de sa Vileta 84',39.59172058105469,2.6225171089172363),(337,' Cami de sa Vileta 130',39.59353256225586,2.619431972503662),(338,' Placa de sa Vileta',39.59474182128906,2.6170029640197754),(339,' Maria Antonia Salva 24',39.59732437133789,2.6167330741882324),(340,' Maria Antonia Salva 54',39.600502014160156,2.6153409481048584),(341,' Cap Enderrocat 10',39.60110092163086,2.616431951522827),(342,' Cap de Formentor 10',39.60346221923828,2.6173160076141357),(343,' Gabriel Bestard 7',39.60364532470703,2.614949941635132),(344,' Son Roca',39.60197830200195,2.6149709224700928),(345,' Maria Antonia Salva 54',39.600528717041016,2.6152470111846924),(346,' Maria Antonia Salva 31',39.597206115722656,2.616558074951172),(347,' Placa de sa Vileta',39.5946044921875,2.616969108581543),(348,' Cami de sa Vileta 137',39.593360900878906,2.619678020477295),(349,' Cami de sa Vileta 115',39.592384338378906,2.621500015258789),(350,' Cami de sa Vileta 47',39.589385986328125,2.624439001083374),(351,' Son Moix',39.5869255065918,2.6268510818481445),(352,' Policlinica Miramar',39.58356475830078,2.630258083343506),(353,' Pasqual Ribot 81',39.58211135864258,2.6324079036712646),(354,' Pasqual Ribot 41',39.579994201660156,2.635551929473877),(355,'\' Avinguda d\'\'America (Ho',39.51350021362305,2.7519030570983887),(356,' Pasqual Ribot 25',39.579010009765625,2.6369659900665283),(357,' Pasqual Ribot 1',39.57815170288086,2.6392290592193604),(358,' Placa del Forti',39.5760383605957,2.643338918685913),(359,' Illes Balears 3',39.57087326049805,2.6176469326019287),(360,' Sindicat',39.5722541809082,2.6556990146636963),(361,' 31 de Desembre 16',39.578651428222656,2.65244197845459),(362,' 31 de Desembre 34',39.58074951171875,2.652524948120117),(363,' Alfons el Magnanim 12',39.583473205566406,2.6530590057373047),(364,' Alfons el Magnanim 30',39.58607864379883,2.653139114379883),(365,' San Francisco de Sales 1',39.58784484863281,2.6531879901885986),(366,' Ses Fontanelles (Aquariu',39.53171920776367,2.728437900543213),(367,' La Porciuncula',39.51816940307617,2.74943208694458),(368,' Cra. de Soller (Son Pacs',39.60506057739258,2.6551411151885986),(369,' Cami de Passatemps',39.60832977294922,2.65500807762146),(370,' Cami de Passatemps 10',39.6107063293457,2.6541919708251953),(371,' Cami de Passatemps 28',39.6152229309082,2.654520034790039),(372,' Cami de Passatemps 60',39.61827087402344,2.655179977416992),(373,' Cami de Passatemps 76',39.619117736816406,2.6551289558410645),(374,' Cami de Passatemps 108',39.62160110473633,2.6549649238586426),(376,' Cami de Passatemps 113 (',39.62171173095703,2.654860019683838),(377,' Cami de Passatemps 73 (S',39.61912536621094,2.655035972595215),(378,' Pere Sans Garau 6',39.61751174926758,2.6547179222106934),(379,' Cami de Passatemps',39.61484146118164,2.65435791015625),(380,' Cami de Passatemps',39.60948181152344,2.6544549465179443),(381,' Cami de Passatemps 1',39.607879638671875,2.655034065246582),(382,' Cra. de Soller (Son Pacs',39.60478973388672,2.654850959777832),(383,' Alfons el Magnanim 83',39.59513854980469,2.6543400287628174),(384,' Ses Fontanelles (Aquariu',39.531227111816406,2.7291040420532227),(385,' Miquel Arcas',39.588191986083984,2.6521151065826416),(386,' Cra. Valldemossa 15',39.58649444580078,2.6506450176239014),(387,' Francesc Suau 9',39.58343505859375,2.651789903640747),(388,' 31 de Desembre 33',39.58076858520508,2.652327060699463),(389,' 31 de Desembre 13',39.57876968383789,2.6522319316864014),(390,' Joan March 5',39.57658004760742,2.653080940246582),(391,' Les Meravelles',39.52187728881836,2.7512800693511963),(392,' Tomas Rul*lan 60 (Son Go',39.576839447021484,2.6738169193267822),(393,' Reis Catolics 89',39.57579040527344,2.66902494430542),(394,' Reis Catolics 25',39.57206344604492,2.67067289352417),(395,' Manacor 107',39.57140350341797,2.6694180965423584),(396,' Cra. Militar 55',39.53123474121094,2.7664430141448975),(397,' Cami de les Meravelles',39.526241302490234,2.756186008453369),(398,' Son Tugores',39.61079025268555,2.6465039253234863),(399,' Cra. Militar 19',39.54119873046875,2.770646095275879),(400,' General Ricardo Ortega 1',39.5696907043457,2.659925937652588),(401,' Manacor  71',39.57152557373047,2.6646909713745117),(402,' Cra. Militar 58',39.53118896484375,2.7663040161132812),(403,' Manacor 27',39.57152557373047,2.6595680713653564),(404,'\' Placa d\'\'Espanya (404)\'',39.5752067565918,2.6552069187164307),(406,' Manacor  2',39.57131576538086,2.6586380004882812),(407,' Manacor 28',39.5713996887207,2.6618740558624268),(408,' Manacor 70',39.571258544921875,2.6663460731506348),(409,' Cra. Militar',39.52714920043945,2.7639551162719727),(410,' Puerto Rico',39.56711196899414,2.668623924255371),(412,' Perez Galdos 17',39.56655502319336,2.6601860523223877),(413,' Cra. Militar 36',39.53673553466797,2.7684500217437744),(414,' Manacor 90',39.571224212646484,2.6695709228515625),(415,' Manacor  138',39.571197509765625,2.6735639572143555),(416,' Tomas Rul*lan 2',39.57143783569336,2.6751930713653564),(417,' Tomas Rul*lan 30',39.57355499267578,2.675252914428711),(418,' Tomas Rul*lan 42',39.57534408569336,2.6745340824127197),(422,' Grans magatzems',39.5734977722168,2.6560769081115723),(423,' Llaut (Golf Fantasia)',39.51311492919922,2.748810052871704),(424,' Llaut (Hotel Neptuno)',39.515010833740234,2.747303009033203),(425,' Llaut 21 (Riu Palace)',39.5183219909668,2.7442660331726074),(426,' Mar Tirrena (Hotel Garon',39.520164489746094,2.742305040359497),(427,' Marbella (Hotel Acapulco',39.52207946777344,2.740262031555176),(428,' Marbella 51 (Hotel Cupid',39.52537536621094,2.736665964126587),(429,' Marbella (Hotel Caballer',39.5269775390625,2.734541893005371),(430,' Marbella (Apartaments Le',39.52968978881836,2.7312850952148438),(431,' Cra. Militar 36',39.53667068481445,2.768321990966797),(432,' Manuela de los Herreros ',39.53352737426758,2.726372003555298),(433,' Manuela de los Herreros ',39.53525161743164,2.723607063293457),(434,' Tramuntana 9',39.53697967529297,2.7192130088806152),(435,' Octavi August  60 (Hotel',39.53792953491211,2.717219114303589),(437,' Cami de Can Pastilla 55',39.53858184814453,2.714517116546631),(438,' Cami de Can Pastilla',39.5413818359375,2.710642099380493),(439,' Cami de Can Pastilla 37 ',39.54921340942383,2.700972080230713),(440,'\' Cardenal Rossell 65 (Co',39.5515251159668,2.69643497467041),(441,' Cardenal Rossell 23',39.55291748046875,2.6944730281829834),(442,' Cardenal Rossell 1',39.55549621582031,2.692017078399658),(443,' La Gruta',39.557212829589844,2.6857120990753174),(444,' Llucmajor 105',39.558433532714844,2.6816439628601074),(445,' Llucmajor 77',39.55942153930664,2.6770999431610107),(446,' Llucmajor 36',39.560970306396484,2.6729838848114014),(447,' Es Portitxol',39.56190872192383,2.6706860065460205),(448,' Llaut (Hotel San Francis',39.51701736450195,2.745655059814453),(449,' Joan Maragall 25',39.56422424316406,2.661221981048584),(450,' Gabriel Alomar 39',39.566375732421875,2.6568920612335205),(451,' Gabriel Alomar 29',39.568016052246094,2.6574079990386963),(452,' Gabriel Alomar  1',39.57099533081055,2.657043933868408),(453,' Placa de la Reina (Cated',39.568965911865234,2.6465649604797363),(454,' La Rambla',39.57344436645508,2.6498489379882812),(455,'\' Placa d\'\'Espanya (455)\'',39.575618743896484,2.6539130210876465),(456,' Alexandre Rossello 5',39.5718879699707,2.656574010848999),(457,' Escola Graduada',39.56951904296875,2.656912088394165),(458,' Porta del Camp',39.56634521484375,2.656543016433716),(459,' Joan Maragall 18',39.564231872558594,2.6607680320739746),(460,' Mussol 30 (Son Xigala)',39.59247970581055,2.609492063522339),(461,' Son Tugores',39.609893798828125,2.647404909133911),(462,' Es Portitxol',39.56178283691406,2.670639991760254),(463,' Llucmajor 56',39.56010055541992,2.6747450828552246),(464,' Llucmajor 100',39.559181213378906,2.6782419681549072),(465,' Llucmajor 144',39.55833435058594,2.6816680431365967),(466,' La Gruta',39.55717468261719,2.6852469444274902),(467,' Cardenal Rossell 1',39.5556755065918,2.6915509700775146),(468,' Cardenal Rossell 36',39.553367614746094,2.693842887878418),(469,'\' Cardenal Rossell 90 (Co',39.55125045776367,2.6973090171813965),(470,' Cami de Can Pastilla 46 ',39.54847717285156,2.701859951019287),(471,' Cami de Can Pastilla 82',39.53966522216797,2.7129530906677246),(473,' Cami de Can Pastilla 110',39.53742980957031,2.715639114379883),(474,' Octavi August 4 (Can Pas',39.53629684448242,2.7172141075134277),(475,' Tramuntana 18',39.53593444824219,2.7192060947418213),(476,' Manuela de los Herreros ',39.53542709350586,2.7228500843048096),(477,' Manuela de los Herreros ',39.533363342285156,2.726349115371704),(479,' Marbella 10 (Apartaments',39.529239654541016,2.731729030609131),(480,' Marbella 22 (Apartaments',39.52666091918945,2.734776020050049),(481,' Marbella 32 (Hotel Cupid',39.525142669677734,2.7367360591888428),(482,' Marbella 42 (Hotel Acapu',39.52192687988281,2.740273952484131),(483,' Mar Tirrena (Hotel Garon',39.519649505615234,2.7427139282226562),(484,' Llaut (Riu Palace)',39.51826858520508,2.744184970855713),(485,' Llaut 26 (Hotel Playa Go',39.51651382446289,2.7459709644317627),(486,' Llaut 38 (Mega Park)',39.514102935791016,2.747864007949829),(487,' Trasime 2 (Hotel Hispani',39.51056671142578,2.750401020050049),(488,' Trasime 24 (Hotel Playa ',39.508262634277344,2.751642942428589),(489,' Florencia 14 (Son Xigala',39.594329833984375,2.6121249198913574),(490,' Cartago (Platja)',39.50432586669922,2.7517149448394775),(492,' Comte de Sallent 14',39.57816696166992,2.650628089904785),(493,' General Riera 17',39.581031799316406,2.64713191986084),(494,' General Riera 30',39.581077575683594,2.6474111080169678),(495,' General Riera 54',39.583858489990234,2.646559000015259),(496,' General Riera 78',39.585758209228516,2.6462349891662598),(497,' General Riera 104',39.58749008178711,2.645922899246216),(498,' General Riera 120',39.5894889831543,2.645807981491089),(499,' General Riera 142',39.59224319458008,2.6444079875946045),(500,' Joan Mascaro i Fornes 16',39.59746551513672,2.6404919624328613),(502,' Joan Mascaro i Fornes',39.599124908447266,2.6386890411376953),(503,' Joan Mascaro i Fornes 56',39.60353088378906,2.6356849670410156),(504,' Joan Mascaro i Fornes 84',39.60581588745117,2.6344261169433594),(505,' Joan Mascaro i Fornes 11',39.607704162597656,2.6333680152893066),(506,' Joan Mascaro i Fornes 95',39.61015319824219,2.6320149898529053),(507,' Joan Mascaro i Fornes 14',39.61288070678711,2.6312549114227295),(508,' Joan Mascaro i Fornes 18',39.61494064331055,2.630311965942383),(509,' Cra. Esporles 26',39.6174201965332,2.628575086593628),(510,' Cra. Esporles 52',39.619598388671875,2.6270840167999268),(511,' Cra. Esporles 76',39.621009826660156,2.6264588832855225),(512,' Cra. Esporles s/n',39.62284469604492,2.625493049621582),(513,' Cra.Esporles s/n',39.62437057495117,2.624109983444214),(514,' Establiments',39.62699508666992,2.621299982070923),(515,' Cra. Esporles 178',39.630210876464844,2.6189401149749756),(516,' Cra. Esporles 186',39.631927490234375,2.6175789833068848),(517,' Cra. Esporles 206',39.635257720947266,2.616209030151367),(518,' Es Muntant',39.63697814941406,2.6160829067230225),(519,' Cra. Esporles 221',39.63510513305664,2.6161859035491943),(520,' Cra. Esporles 203',39.631656646728516,2.617661952972412),(521,' Cra. Esporles s/n',39.629241943359375,2.6196680068969727),(522,' Establiments',39.626930236816406,2.621217966079712),(523,' Cra. Esporles s/n',39.62413787841797,2.6242051124572754),(524,' Cra. Esporles 105',39.622833251953125,2.6253890991210938),(525,' Cra. Esporles 65',39.62088394165039,2.6264240741729736),(526,' Cra. Esporles 43',39.61943435668945,2.6270499229431152),(527,' Cra. Esporles 25',39.61775207519531,2.6281421184539795),(528,' Joan Mascaro i Fornes 13',39.61454391479492,2.6304080486297607),(529,' Joan Mascaro i Fornes 11',39.61286926269531,2.63116192817688),(530,' Joan Mascaro i Fornes 95',39.61003494262695,2.631993055343628),(531,' Joan Mascaro i Fornes 73',39.607757568359375,2.6332509517669678),(532,' Joan Mascaro i Fornes 57',39.60586166381836,2.634298086166382),(533,' Joan Mascaro i Fornes 43',39.60335922241211,2.635673999786377),(534,' Joan Mascaro i Fornes 27',39.5991096496582,2.638585090637207),(535,' Joan Mascaro i Fornes 16',39.5974006652832,2.6404340267181396),(536,' Capita Vila 34',39.57224655151367,2.6651759147644043),(537,' Centre comercial',39.593753814697266,2.643317937850952),(538,' General Riera 113',39.59206008911133,2.6442229747772217),(539,' General Riera 105',39.5901985168457,2.6454200744628906),(540,' General Riera 77',39.58803939819336,2.645653009414673),(541,' General Riera 63',39.585750579833984,2.645944118499756),(542,' General Riera 35',39.582984924316406,2.6465280055999756),(543,' General Riera 9',39.57926940917969,2.6481540203094482),(544,' Pisa 24 (Son Xigala)',39.594852447509766,2.6125071048736572),(545,' Son Xigala (Ambulatori)',39.593017578125,2.616547107696533),(546,' Aeroport - Sortides',39.54789733886719,2.7302141189575195),(547,' Aeroport - Arribades',39.547149658203125,2.7292630672454834),(548,' Centre comercial-Mercapa',39.555091857910156,2.7056028842926025),(549,' Mussol 7 (Son Xigala)',39.5929069519043,2.6101651191711426),(551,' Sant Vicenc de Paul 20',39.592872619628906,2.6467459201812744),(553,' Manuel Azana',39.565185546875,2.6628360748291016),(554,' Manuel Azana',39.56513977050781,2.6629750728607178),(555,' Manuel Azana',39.568809509277344,2.664552927017212),(556,' Cra. Valldemossa 66',39.59391784667969,2.647684097290039),(557,' Cra. Valldemossa',39.593467712402344,2.64762806892395),(558,' Sant Vicenc de Paul 9',39.592857360839844,2.6458609104156494),(559,' Eusebi Estada 1 (Estacio',39.57685470581055,2.654197931289673),(560,' Miguel Fleta 2',39.5836067199707,2.6648659706115723),(561,' Tomas Luis de Victoria 1',39.585304260253906,2.665393114089966),(562,' Cra. Manacor',39.5710563659668,2.743211030960083),(563,' Cra. Manacor',39.571075439453125,2.7430479526519775),(566,' Aeroport (Benzinera)',39.546810150146484,2.7240970134735107),(567,' Rotonda de Can Moreno',39.616844177246094,2.646204948425293),(568,' Argentina 61',39.57370376586914,2.6405560970306396),(569,' Argentina 25',39.57091522216797,2.639604091644287),(571,' Edifici Beatriu de Pinos',39.63767623901367,2.64530611038208),(572,' Parc Bit',39.637413024902344,2.6336069107055664),(583,' Tomas Luis de Victoria 6',39.5851936340332,2.665055990219116),(585,' Manuel Azana 16',39.56890869140625,2.664436101913452),(586,' Pi i Margall 12',39.572265625,2.6662709712982178),(598,'\' Placa d\'\'Espanya (598)\'',39.575782775878906,2.653726100921631),(604,' Cra. Militar 165',39.51333999633789,2.7580230236053467),(605,' Ambulatori',39.508628845214844,2.754573106765747),(607,' Cami dels Reis 613 (Sa I',39.614253997802734,2.6752259731292725),(608,' Cami 140',39.62831115722656,2.6687049865722656),(609,' Avinguda de Mexic',39.566078186035156,2.666940927505493),(610,' Sant Vicenc de Paul 37',39.593467712402344,2.650365114212036),(611,' Sant Vicenc de Paul 56',39.59390640258789,2.65310001373291),(612,' Carles Riba 12',39.592987060546875,2.6556200981140137),(613,' Oliveres',39.4909553527832,2.7407500743865967),(615,' Sant Vicenc de Paul 71',39.59400939941406,2.653588056564331),(616,' Sant Vicenc de Paul 39',39.59362030029297,2.650585889816284),(617,' Caracas',39.56888961791992,2.6672070026397705),(618,' Son Riera',39.555973052978516,2.7160749435424805),(619,' Cami 140',39.61972427368164,2.672287940979004),(621,' Centre comercial',39.594200134277344,2.643256902694702),(622,' Parc aquatic',39.49630355834961,2.7589309215545654),(623,' Arxiduc Lluis Salvador 2',39.57903289794922,2.654036045074463),(624,' Miramar (Hotel San Diego',39.50215530395508,2.751384973526001),(625,' Sant Bartomeu (Hotel Rei',39.49906921386719,2.7543740272521973),(626,' Ondategui',39.486297607421875,2.739511013031006),(627,' Platja Cala Blava',39.48611831665039,2.737349033355713),(628,' Ondategui 73',39.484161376953125,2.7367050647735596),(629,' Ondategui 110',39.48260498046875,2.7373390197753906),(630,' Mare de Deu de Begonya 1',39.482112884521484,2.739201068878174),(631,' Cap Enderrocat 4',39.47928237915039,2.7378859519958496),(632,' Passeig de les Dames 4',39.47789001464844,2.7320659160614014),(633,' Passeig de les Dames 20',39.47859573364258,2.7290990352630615),(634,' Passeig de les Dames 36',39.480552673339844,2.7303929328918457),(635,' Via Augusta 11- Bellavis',39.48123550415039,2.7329599857330322),(636,' Via Augusta 37',39.478965759277344,2.734178066253662),(637,' Cap Enderrocat 4',39.4792366027832,2.7379438877105713),(638,' Mare de Deu de Begonya 1',39.48215103149414,2.7394449710845947),(639,' Ondategui 115',39.482669830322266,2.7373969554901123),(640,' Ondategui 69',39.48424530029297,2.736809015274048),(641,' Ondategui 52',39.48601150512695,2.7378029823303223),(642,' Ondategui 37',39.48609924316406,2.73970890045166),(643,' Cami 140  33',39.619606018066406,2.67226505279541),(644,' Cami 140',39.62273025512695,2.670922040939331),(645,' Cami 140',39.62273025512695,2.6708409786224365),(646,' Costa i Llobera 2',39.49916076660156,2.7513959407806396),(647,' Costa i Llobera 20',39.49734115600586,2.750901937484741),(648,' Avinguda de Son Veri 3',39.4966926574707,2.7475669384002686),(649,' Alber',39.495052337646484,2.746026039123535),(650,' Cedre',39.49108123779297,2.743597984313965),(651,' Cedre',39.48805618286133,2.7410740852355957),(652,' Cedre',39.48800277709961,2.7411210536956787),(653,' Cedre',39.49107360839844,2.7437150478363037),(654,' Alber',39.495033264160156,2.746095895767212),(655,' Avinguda de Son Veri',39.496585845947266,2.7475669384002686),(656,' Costa i Llobera',39.497249603271484,2.7509379386901855),(657,' Costa i Llobera',39.49893569946289,2.751594066619873),(660,' Cra. Militar',39.51078796386719,2.756380081176758),(661,' Llimonera',39.49102020263672,2.740807056427002),(662,' Placa de Cort',39.569427490234375,2.6501948833465576),(663,'\' Placa d\'\'en Coll\'',39.57062911987305,2.6520519256591797),(664,' Placa de la Quartera',39.57042694091797,2.6533679962158203),(665,' Cami 140 50',39.62627410888672,2.6694140434265137),(666,' Cami 140',39.61636734008789,2.674027919769287),(668,' Cami 140',39.63111877441406,2.667375087738037),(669,' Cami de Son Ametler 10',39.58674621582031,2.7315540313720703),(670,' Cami 140',39.616268157958984,2.6739931106567383),(671,' Cami 140',39.62622833251953,2.669343948364258),(673,' Cardenal Rossell 138',39.55232238769531,2.7006099224090576),(674,' Cardenal Rossell 16',39.55237579345703,2.7005510330200195),(675,' Bartomeu Riutort',39.53531265258789,2.719290018081665),(676,' Balneari 15',39.532989501953125,2.723849058151245),(677,' Balneari 14',39.53072738647461,2.7279999256134033),(678,' Balneari 13',39.529029846191406,2.7304039001464844),(679,' Club Nautic Sant Antoni',39.53438949584961,2.714266061782837),(680,' Balneari 12',39.52788162231445,2.731745958328247),(681,' Balneari 11',39.52596664428711,2.7340219020843506),(682,' Balneari 10',39.524070739746094,2.7362170219421387),(683,' Balneari 9',39.522056579589844,2.738550901412964),(684,' Balneari 8',39.51994323730469,2.7408509254455566),(685,' Balneari 7',39.517948150634766,2.742964029312134),(686,' Balneari 6',39.51599884033203,2.7449610233306885),(687,' Balneari 5',39.513893127441406,2.7466790676116943),(688,' Balneari 3',39.50933074951172,2.749788999557495),(689,' Balneari 2',39.50791931152344,2.7505741119384766),(690,' Balneari 1',39.504966735839844,2.7517709732055664),(691,' Balneari 1',39.50608444213867,2.751638889312744),(692,' Balneari 2',39.50801086425781,2.7506320476531982),(693,' Balneari 4',39.51185989379883,2.748408079147339),(694,' Balneari 5',39.51390075683594,2.7467830181121826),(695,' Balneari 6',39.51603317260742,2.745054006576538),(696,' Balneari 7',39.51798629760742,2.7430570125579834),(697,' Balneari 8',39.52000045776367,2.7409210205078125),(698,' Balneari 9',39.52210998535156,2.738632917404175),(699,' Balneari 10',39.52411651611328,2.7363100051879883),(700,' Balneari 11',39.5260124206543,2.7340800762176514),(701,' Cami dels Reis (Poligon ',39.59518814086914,2.636322021484375),(702,' Balneari 12',39.527915954589844,2.731851100921631),(703,' Balneari 13',39.52906799316406,2.730484962463379),(704,' Balneari 14',39.530799865722656,2.728080987930298),(705,' Balneari 15',39.53318786621094,2.723673105239868),(706,' Bartomeu Riutort',39.53538513183594,2.719312906265259),(707,' Palangres',39.53476333618164,2.71689510345459),(708,' Cami dels Reis (Poligon ',39.59531784057617,2.636286973953247),(709,' Congre',39.53658676147461,2.7104990482330322),(713,' Illes Balears 115',39.57197570800781,2.612494945526123),(714,' Saridakis',39.55447006225586,2.6109509468078613),(715,' Saridakis 42',39.55686950683594,2.6083180904388428),(716,' Saridakis 47',39.5570182800293,2.6080610752105713),(717,' Saridakis (Fundacio Miro',39.554344177246094,2.6109859943389893),(718,' Cami dels Reis',39.598716735839844,2.640695095062256),(719,' Cami dels Reis',39.598636627197266,2.640939950942993),(722,' Miquel Fleta 1',39.58366012573242,2.664807081222534),(723,' Jacint Verdaguer 7',39.57962417602539,2.6591789722442627),(724,' Cami Vell de Bunyola (ca',39.59492111206055,2.6705760955810547),(725,' Gremi de Sabaters 20',39.600215911865234,2.668442964553833),(727,' Bartomeu Riutort',39.53449630737305,2.721318006515503),(728,' Sant Francesc de Sales 7',39.59072494506836,2.6558289527893066),(729,' Sant Francesc de Sales 9',39.592262268066406,2.6573588848114014),(730,' Salvador Espriu 9',39.593990325927734,2.6559879779815674),(731,' Gremi de Sucrers',39.60797882080078,2.6575379371643066),(732,' Setze de Juliol 85',39.60824966430664,2.6614739894866943),(733,' Congre 31',39.53759002685547,2.7084460258483887),(735,' Cami dels Reis',39.60785675048828,2.656780958175659),(736,' Carles Riba 38',39.59165954589844,2.6580259799957275),(737,' Joan Bonet 1',39.5893440246582,2.6577110290527344),(738,' Cra. Valldemossa 34',39.58958053588867,2.6495931148529053),(739,' Cra. Valldemossa',39.592613220214844,2.6480519771575928),(740,' Cra. Valldemossa 55',39.592586517333984,2.6478888988494873),(741,' Cra. Valldemossa',39.58989334106445,2.649148941040039),(742,' Cami de Passatemps',39.62882995605469,2.655803918838501),(743,' Cami de la Real (Ca ses ',39.62779998779297,2.639518976211548),(744,' Cami de la Real',39.631935119628906,2.6418750286102295),(745,' Son Espanyol',39.63119125366211,2.6462600231170654),(746,' Son Espases 19',39.61076736450195,2.644745111465454),(747,' Cami de la Real',39.620670318603516,2.6387290954589844),(748,' Cra. Valldemossa  (Roton',39.616493225097656,2.6455540657043457),(749,' Cami de la Real (Secar)',39.608314514160156,2.641495943069458),(750,' Monestir de la Real',39.60249710083008,2.641490936279297),(753,' Carrer Poima 17',39.59561538696289,2.6317780017852783),(754,' Carrer Poima 7',39.593994140625,2.633882999420166),(755,' Cementeri',39.586116790771484,2.6395249366760254),(756,' Cami de Jesus (Psiquiatr',39.5826301574707,2.6429319381713867),(757,' Cami de Jesus',39.578338623046875,2.6469359397888184),(758,' Cami de Jesus (Psiquiatr',39.58293914794922,2.642988920211792),(759,' Cementeri',39.58646011352539,2.6395699977874756),(760,' Quatre de novembre 2',39.594669342041016,2.6314220428466797),(761,' Poima 26',39.59707260131836,2.630884885787964),(762,' Aula Balear',39.59880065917969,2.6321799755096436),(764,' Monestir de la Real',39.60253143310547,2.6415600776672363),(765,' Cami de la Real',39.60845947265625,2.641611099243164),(766,' Cami de la Real 22',39.61083221435547,2.6420419216156006),(767,' Son Porro',39.614261627197266,2.6414530277252197),(768,' Cami de la Real 55',39.616424560546875,2.6407079696655273),(769,' Cami de la Real 30',39.61812210083008,2.639673948287964),(770,' Cami de la Real  (Can Ra',39.62449645996094,2.6381609439849854),(771,' Balneari 3',39.509368896484375,2.7498939037323),(773,' Balneari 4',39.511905670166016,2.748255968093872),(775,' Cami de Passatemps',39.63472366333008,2.6558680534362793),(776,' Cami de Passatemps',39.63471603393555,2.6557860374450684),(780,' Mussol 21',39.592464447021484,2.6075708866119385),(781,' Mussol',39.59236526489258,2.606837034225464),(784,' Joan Miro 299',39.552608489990234,2.5983669757843018),(785,' Can Tapera',39.5523681640625,2.6024069786071777),(786,' Can Tapera',39.55265426635742,2.598565101623535),(787,' Joan Miro 320',39.552452087402344,2.6024301052093506),(788,' Cami de Passatemps 123 (',39.63557052612305,2.6559219360351562),(790,' Sa Garriga',39.63583755493164,2.6610240936279297),(791,' Passatemps 116',39.622989654541016,2.6547720432281494),(792,' Cami de Passatemps',39.628841400146484,2.6559081077575684),(793,' Manacor 303',39.57127380371094,2.719970941543579),(794,' Manacor 385',39.57139205932617,2.7198660373687744),(795,' Cami dels Reis (Sa Indio',39.61145782470703,2.676788091659546),(796,' Caracas',39.56916427612305,2.6657040119171143),(797,' Alfons el Magnanim 94',39.59485626220703,2.65458607673645),(799,' Av. Alexandre Rossello 9',39.57215881347656,2.6566081047058105),(802,' Centre comercial',39.555145263671875,2.7055439949035645),(804,' Cra. Manacor',39.57083511352539,2.702601909637451),(805,' Cra. Manacor',39.57064437866211,2.702812910079956),(806,' Balnearis 14-15',39.53211975097656,2.7254459857940674),(807,' Balnearis 14-15',39.53218078613281,2.7255160808563232),(808,' Amadip',39.588096618652344,2.713253974914551),(810,' Sindicat',39.57252883911133,2.6564080715179443),(811,' Sant Jordi',39.554691314697266,2.7773990631103516),(812,' Esperanto 6',39.57181167602539,2.71081805229187),(813,' Manacor',39.57129669189453,2.657602071762085),(814,' Son Malferit',39.57025146484375,2.6805078983306885),(815,' Esperanto 30',39.57247543334961,2.71445894241333),(816,' Ambulatori de Son Ferrio',39.5744743347168,2.7139270305633545),(817,' Margalida Monlau 56',39.577247619628906,2.7131359577178955),(818,' Ordi 62',39.578155517578125,2.7147738933563232),(819,' Avinguda del Cid 63',39.57769775390625,2.7162539958953857),(820,' Avinguda del Cid 37',39.575355529785156,2.716963052749634),(821,' Avinguda del Cid 17',39.572879791259766,2.717729091644287),(822,' Bartomeu Riutort',39.53445053100586,2.7212250232696533),(824,' Son Malferit',39.57046890258789,2.6802620887756348),(825,' Manacor  137',39.57126998901367,2.673506021499634),(827,' Cami de Sant Jordi',39.561553955078125,2.765597105026245),(828,' Ctra. Manacor Km 7',39.57114791870117,2.7360150814056396),(829,' Vial de Servei',39.56781005859375,2.7677180767059326),(830,' Cra. Manacor Km 7.8',39.5682258605957,2.7538740634918213),(831,' Sa Casa Blanca',39.56758117675781,2.756484031677246),(832,' Cami de Sant Jordi',39.55810546875,2.771393060684204),(833,' Carrer de Sant Jordi',39.55630111694336,2.775217056274414),(834,' Sant Jordi',39.5545768737793,2.777388095855713),(835,' Cami de Sant Jordi 101',39.556461334228516,2.775135040283203),(836,' Cami de Sant Jordi',39.558834075927734,2.770354986190796),(837,' Sa Casa Blanca',39.56766128540039,2.7564139366149902),(838,' Cra. Manacor km 8',39.568294525146484,2.753814935684204),(840,' Cra. Manacor km 7',39.57122039794922,2.735909938812256),(841,' Cami de sa Siquia',39.565582275390625,2.77496600151062),(843,' Avinguda del Cid 26',39.573368072509766,2.7176809310913086),(844,' Avinguda del Cid 52',39.57518768310547,2.71712589263916),(845,' Avinguda del Cid 70',39.576778411865234,2.716641902923584),(846,' Plato',39.576377868652344,2.713697910308838),(847,' Andorra 23',39.5732307434082,2.7128849029541016),(848,' Andorra',39.57160186767578,2.713473081588745),(849,' Hospital Son Llatzer',39.57328414916992,2.702510118484497),(856,'\' S\'\'Hostalot\'',39.58938217163086,2.7302749156951904),(857,' Puig de la Mola 21',39.5866813659668,2.730483055114746),(860,' Biniamar',39.582149505615234,2.681442975997925),(861,' Son Gibert',39.5826416015625,2.683432102203369),(862,' Mimosa',39.58357620239258,2.6853840351104736),(863,' Baltasar Valenti',39.586822509765625,2.684145927429199),(865,' Cami de Genova 43',39.57317352294922,2.615968942642212),(866,' Pagell 2',39.534767150878906,2.7106809616088867),(870,' Turixant 29',39.59544372558594,2.588593006134033),(871,' Turixant 9',39.59156036376953,2.590701103210449),(872,' Almadra',39.58852767944336,2.5967509746551514),(873,' Marola 14',39.59527587890625,2.5915989875793457),(874,' Turixant 1',39.589317321777344,2.5937180519104004),(875,' Cra. Manacor',39.57032775878906,2.685153007507324),(876,' Cra. Manacor',39.570533752441406,2.6849300861358643),(880,' Can Alegria',39.531585693359375,2.7318599224090576),(881,' Martinet (centre escolar',39.53049087524414,2.735168933868408),(882,' Sargas',39.52815246582031,2.7368409633636475),(883,'\' Mar d\'\'Aral\'',39.525672912597656,2.7440059185028076),(884,'\' Mar d\'\'Aral (Hotel Cosm',39.523460388183594,2.7462949752807617),(885,'\' Mar d\'\'Aral (Hotel Lanc',39.5205192565918,2.747864007949829),(886,' Dragonera',39.4990234375,2.758316993713379),(887,' Dragonera 22',39.49876022338867,2.7581779956817627),(888,'\' Avinguda d\'\'Europa (Hot',39.49714279174805,2.7553110122680664),(889,'\' Avinguda d\'\'Europa (Hot',39.4985466003418,2.75437593460083),(890,' Trencadors 27',39.50225830078125,2.7538509368896484),(891,' Placa dels Nins',39.505393981933594,2.7540369033813477),(892,' Cra. Militar 231',39.50786590576172,2.754633903503418),(893,'\' Mar d\'\'Aral (Hotel Lanc',39.520591735839844,2.747968912124634),(894,'\' Mar d\'\'Aral (Hotel Cosm',39.5235595703125,2.7463760375976562),(895,'\' Mar d\'\'Aral\'',39.525672912597656,2.744180917739868),(896,' Sargas',39.528011322021484,2.7371439933776855),(897,' Martinet (centre escolar',39.53040313720703,2.735227108001709),(898,' Can Alegria',39.531639099121094,2.731790065765381),(900,' Cannes 34',39.50638198852539,2.753079891204834),(901,' Dragonera 1',39.50111389160156,2.7586469650268555),(902,' Dragonera 2',39.501121520996094,2.758542060852051),(903,' Trencadors (Hotel Bahia)',39.501285552978516,2.753575086593628),(904,' Cra. de Soller (preso)',39.59748077392578,2.6545259952545166),(905,' Cra. de Soller (preso)',39.599815368652344,2.6551198959350586),(906,' Uruguai (Velodrom)',39.58735275268555,2.643083095550537),(907,' Pardo Bazan 26',39.59318161010742,2.6145429611206055),(908,' Saridakis 8',39.552574157714844,2.612473964691162),(909,' Saridakis 3',39.552547454833984,2.612346887588501),(910,' Picasso 62',39.57866287231445,2.626791000366211),(911,' Joan Ripoll i Trobat 32',39.58163070678711,2.6275670528411865),(912,' Policlinica',39.58296203613281,2.6304359436035156),(913,' Salvador Dali 54',39.584468841552734,2.6342709064483643),(914,' Cementeri',39.58598709106445,2.640947103500366),(920,' Rotonda de Portopi',39.55063247680664,2.6192240715026855),(921,' Passeig Maritim (Can Bar',39.55728530883789,2.625904083251953),(922,'\' Passeig Maritim (L\'\'Aig',39.56492614746094,2.6285760402679443),(924,'\' Passeig Maritim (L\'\'Aig',39.56528854370117,2.628411054611206),(925,' Passeig Maritim (Can Bar',39.5574836730957,2.6257519721984863),(927,' Antoni Maura (Almudaina)',39.56827163696289,2.6462769508361816),(928,' Porta del Camp',39.565425872802734,2.6564550399780273),(929,' Moll Vell',39.56575012207031,2.644007921218872),(931,' Poble Espanyol',39.57275390625,2.6281731128692627),(934,' Jacint  Verdaguer',39.58175277709961,2.6624059677124023),(939,' Castell de Bellver',39.56278610229492,2.619180917739868),(942,' Estacio Maritima',39.55305480957031,2.6263461112976074),(943,' Auditorium',39.56731033325195,2.630204916000366),(944,' Es Baluard',0,0),(945,' Cami de Son Fangos',39.5338020324707,2.736656904220581),(946,' Cami de Son Fangos',39.53103256225586,2.746476888656616),(947,' Es Pil*lari',39.52925491333008,2.755023956298828),(948,' Cra. Militar',39.52329635620117,2.762769937515259),(949,' Cra. Militar',39.52314376831055,2.7626309394836426),(950,' Marbella 36',39.52347183227539,2.738593101501465),(951,' Marbella 61',39.52377700805664,2.738358974456787),(952,' Es Pil*lari',39.52920150756836,2.7556169033050537),(953,' Cami de Son Fangos',39.53109359741211,2.746464967727661),(954,' Cami de Son Fangos',39.534019470214844,2.736715078353882),(955,' Cami de Son Ametler 36',39.588294982910156,2.7312920093536377),(958,' Jacint Verdaguer',39.58123779296875,2.6615118980407715),(959,' Ullastre',39.627357482910156,2.6451730728149414),(963,' Guillem Forteza 20',39.587562561035156,2.648858070373535),(964,' Miquel Arcas 4',39.587982177734375,2.651895046234131),(965,' Tomas de Villanueva Cort',39.587257385253906,2.662343978881836),(966,' Gabriel Maura 19',39.578067779541016,2.6590240001678467),(967,' Nicolau de Pacs 3',39.57405471801758,2.660521984100342),(968,' Monsenyor Palmer',39.56947708129883,2.634150981903076),(969,' Joan Maragall 4',39.56568145751953,2.6573500633239746),(970,' Adria Ferran 36',39.57558059692383,2.6681180000305176),(971,' Josep Darder 35',39.57698440551758,2.667970895767212),(972,' Josep Darder 5',39.578495025634766,2.6637260913848877),(973,' Jacint Verdaguer 32',39.580078125,2.659980058670044),(974,' Tomas de Villanueva Cort',39.58740234375,2.6623899936676025),(975,' Guillem Forteza 27',39.58769607543945,2.6488800048828125),(976,' Cementeri',39.58609390258789,2.6408300399780273),(977,' Policlinica',39.58308029174805,2.630319118499756),(978,' Joan Ripoll i Trobat 25',39.58198928833008,2.6278560161590576),(979,' Picasso 61',39.57880783081055,2.626673936843872),(980,' Picasso 41',39.576133728027344,2.625570058822632),(981,'\' Av. d\'\'Alemanya 3\'',39.577999114990234,2.648545026779175),(982,' Picasso 21',39.574039459228516,2.6245920658111572),(983,' Nous Jutjats',39.57024383544922,2.6556038856506348),(985,' Pl. Joan Carles I',39.571163177490234,2.646704912185669),(986,' Pl. de la Reina',39.56967544555664,2.6463279724121094),(989,' Concha Espina 5',39.59449005126953,2.6147921085357666),(990,' Ramon y Cajal 14',39.575294494628906,2.641711950302124),(992,' Can Caimari 22',39.547908782958984,2.6982429027557373),(993,' Sa Creu Vermella',39.58281326293945,2.7155470848083496),(994,' Uruguai (Velodrom)',39.58726501464844,2.6437230110168457),(997,' Sant Joan de Deu (Hospit',39.547489166259766,2.699176073074341),(1001,' Cami de Jesus (Pol. Son ',39.592044830322266,2.6335790157318115),(1002,' Cami de Jesus (Pol. Son ',39.59199905395508,2.633415937423706),(1003,'\' Amilcar 1 (S\'\'Arenal)\'',39.5062370300293,2.7517778873443604),(1004,' Avinguda del Cid',39.585540771484375,2.714242935180664),(1005,' Perez Galdos (Mercat de ',39.56562423706055,2.6628329753875732),(1006,' Av. de Mexic (Parc de Kr',39.566261291503906,2.6651699542999268),(1007,' Carrer Genil',39.59543228149414,2.6760358810424805),(1008,' Can Foradi 42',39.59547424316406,2.6784470081329346),(1009,' Cala Estancia',39.54121780395508,2.7106659412384033),(1012,' Son Lledo',39.639286041259766,2.648247003555298),(1013,' Ed. Anselm Turmeda',39.63745880126953,2.6447250843048096),(1014,' Son Lledo',39.63797378540039,2.648171901702881),(1015,' Son Hugo',39.592681884765625,2.661281108856201),(1017,' Ter 14 (pol. Son Fuster)',39.59368133544922,2.6738901138305664),(1018,' Ter 21 (pol. Son Fuster)',39.59368896484375,2.6737730503082275),(1019,' Canonge Antoni Sancho 44',39.5966796875,2.6774508953094482),(1021,' Son Llatzer (consultes e',39.57187271118164,2.703087091445923),(1022,' Hospital Son Llatzer',39.573577880859375,2.704464912414551),(1023,' Aula Balear',39.598533630371094,2.631074905395508),(1024,' Can Valero',39.60088348388672,2.6272659301757812),(1025,' Carrer Poima 31',39.5987548828125,2.6293740272521973),(1026,' Cami dels Reis 201',39.592437744140625,2.6324470043182373),(1027,' Cami dels Reis (estadi f',39.589298248291016,2.6254639625549316),(1028,' Cami dels Reis (estadi f',39.58921813964844,2.625535011291504),(1029,' Cami dels Reis 123',39.59233856201172,2.632517099380493),(1033,' Gremi de Ferrers 46',39.603389739990234,2.6732380390167236),(1035,' Setze de Juliol 37',39.60054016113281,2.6623849868774414),(1036,' Setze de Juliol 21',39.597869873046875,2.664691925048828),(1038,' Son Oliver 125',39.55344772338867,2.7756459712982178),(1039,' Son Oliver 128',39.55332946777344,2.7760069370269775),(1040,' Depuradora',39.54668045043945,2.767893075942993),(1041,' Depuradora',39.546653747558594,2.7682299613952637),(1043,' Darwin',39.55233383178711,2.702378988265991),(1044,' Darwin (edifici Endesa)',39.54948806762695,2.7019600868225098),(1045,' Darwin (edifici Endesa)',39.54957580566406,2.7021000385284424),(1046,' Darwin',39.552406311035156,2.7024950981140137),(1048,' Joan Carles I',39.57117462158203,2.64703106880188),(1049,' Poliesportiu',39.55531692504883,2.5971879959106445),(1050,' Poliesportiu',39.555477142333984,2.597187042236328),(1051,' Av. Alemanya 7',39.57785415649414,2.6483941078186035),(1058,' Cami Salard 34',39.58578872680664,2.6810879707336426),(1059,' Cami Salard 60',39.583126068115234,2.6823699474334717),(1060,' Cami dels Reis (Son Berg',39.56788635253906,2.603179931640625),(1061,' Cami dels Reis (Son Berg',39.56795120239258,2.6033430099487305),(1062,' Andreu Ferret 1',39.55502700805664,2.597235918045044),(1063,' Noruega 13',39.55341720581055,2.5950920581817627),(1064,' Noruega 1',39.552574157714844,2.5934560298919678),(1065,' Cami de Son Toells 17',39.5516471862793,2.596522092819214),(1066,' Poligon Son Rossinyol',39.602203369140625,2.6552600860595703),(1067,' Son Oliver',39.55249786376953,2.7738211154937744),(1068,' Son Oliver 53',39.55255889892578,2.7738330364227295),(1070,' Pompeu Fabra 65',39.58869552612305,2.6546859741210938),(1071,' Pompeu Fabra 50',39.58885955810547,2.6546390056610107),(1072,' Pompeu Fabra 7',39.58863067626953,2.6571199893951416),(1073,' Pompeu Fabra 20',39.58876037597656,2.6581099033355713),(1074,' Son Espases Hospitalitza',39.6072998046875,2.6453559398651123),(1075,' Son Espases Consultes',39.60711669921875,2.6437270641326904),(1076,' Son Espases Consultes',39.60695266723633,2.64384388923645),(1077,' Cami de Son Toells 33',39.551788330078125,2.593226909637451),(1078,'\' Placa d\'\'Espanya (1078)',39.57603454589844,2.6540160179138184),(1079,' CIS de Mallorca',39.56652069091797,2.6859729290008545),(1080,' Son Cladera',39.60040283203125,2.6806840896606445),(1081,' Mallol 33',39.598106384277344,2.6811599731445312),(1082,' Baltasar Valenti 25',39.59098434448242,2.682765007019043),(1083,' Mallol',39.593082427978516,2.6824870109558105),(1084,' Mallol 107',39.597564697265625,2.681523084640503),(1085,' Gremi de Sabaters',39.60353088378906,2.6655619144439697),(1087,' Antoni Marques 9',39.57947540283203,2.6511340141296387),(1090,' Cala Nova',39.55031204223633,2.598741054534912),(1093,' Alber 64',39.58230209350586,2.6778790950775146),(1094,' Hort municipal',39.621246337890625,2.671605110168457),(1095,' Cami Salard 12',39.58802795410156,2.679982900619507),(1096,' Gran Via Asima 21',39.60685348510742,2.6681671142578125),(1097,' Gran Via Asima 11',39.6047248840332,2.670006036758423),(1101,' Escola hoteleria',39.6427116394043,2.6459219455718994),(1102,' Escola hoteleria',39.642578125,2.6453630924224854),(1103,' Ctra. Sineu',39.578407287597656,2.7085320949554443),(1104,' Son Espanyol',39.635719299316406,2.642204999923706),(1105,' Son Espanyol',39.635719299316406,2.6421000957489014),(1106,' Cami de Genova 4',39.57233810424805,2.6196060180664062),(1107,' Cami de Genova 1',39.57219696044922,2.61946702003479),(1108,' Verge de Lluc (centre de',39.594932556152344,2.683422088623047),(1110,' Cami del Destre',39.637840270996094,2.661655902862549),(1116,' Parc de Sa Riera',39.58156204223633,2.6437408924102783),(1117,' Balanguera 21',39.5791130065918,2.6415181159973145),(1122,' Ter 2',39.59149169921875,2.6778829097747803),(1123,' Guadiana 31',39.594661712646484,2.6775190830230713),(1124,' Genil 32',39.59738540649414,2.677436113357544),(1125,' Ter 1',39.59123611450195,2.677232027053833),(1126,' Cami de Can Pastilla 98 ',39.54020309448242,2.715290069580078);
+/*!40000 ALTER TABLE `localcommuter_parada` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `localcommuter_rutalinea`
+--
+
+DROP TABLE IF EXISTS `localcommuter_rutalinea`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `localcommuter_rutalinea` (
+  `_id` int(11) NOT NULL,
+  `numlinea_id` int(11) NOT NULL,
+  `numparada_id` int(11) NOT NULL,
+  `orden` int(11) NOT NULL,
+  `sentido` int(11) NOT NULL,
+  PRIMARY KEY (`_id`),
+  KEY `localcommuter_rutalinea_dd76b3db` (`numlinea_id`),
+  KEY `localcommuter_rutalinea_1bfb5a56` (`numparada_id`),
+  CONSTRAINT `numlinea_id_refs__id_edf2c911` FOREIGN KEY (`numlinea_id`) REFERENCES `localcommuter_linea` (`_id`),
+  CONSTRAINT `numparada_id_refs__id_75222d18` FOREIGN KEY (`numparada_id`) REFERENCES `localcommuter_parada` (`_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `localcommuter_rutalinea`
+--
+
+LOCK TABLES `localcommuter_rutalinea` WRITE;
+/*!40000 ALTER TABLE `localcommuter_rutalinea` DISABLE KEYS */;
+INSERT INTO `localcommuter_rutalinea` VALUES (1,10,810,0,0),(2,10,810,1,1),(3,10,48,2,0),(4,10,598,3,1),(5,10,1078,4,0),(6,10,325,5,1),(7,10,623,6,0),(8,10,324,7,1),(9,10,296,8,0),(10,10,323,9,1),(11,10,297,10,0),(12,10,322,11,1),(13,10,298,12,0),(14,10,285,13,1),(15,10,299,14,0),(16,10,1018,15,1),(17,10,256,16,0),(18,10,1019,17,1),(19,10,1017,18,0),(20,10,311,19,1),(21,10,1007,20,0),(22,10,310,21,1),(23,10,1008,22,0),(24,10,309,23,1),(25,10,312,24,0),(26,10,307,25,1),(27,10,314,26,0),(28,10,268,27,1),(29,10,315,28,0),(30,10,316,29,0),(31,10,267,30,1),(32,10,272,31,0),(33,10,273,32,0),(34,10,266,33,1),(35,10,274,34,0),(36,10,1033,35,0),(37,10,1033,36,1),(38,11,1,0,0),(39,11,1,1,1),(40,11,1078,2,0),(41,11,390,3,1),(42,11,623,4,0),(43,11,389,5,1),(44,11,249,6,0),(45,11,388,7,1),(46,11,250,8,0),(47,11,291,9,1),(48,11,251,10,0),(49,11,290,11,1),(50,11,254,12,0),(51,11,289,13,1),(52,11,260,14,0),(53,11,287,15,1),(54,11,728,16,0),(55,11,737,17,1),(56,11,729,18,0),(57,11,736,19,1),(58,11,730,20,0),(59,11,612,21,1),(60,11,905,22,0),(61,11,611,23,1),(62,11,1066,24,0),(63,11,383,25,1),(64,11,368,26,0),(65,11,904,27,1),(66,11,731,28,0),(67,11,382,29,1),(68,11,732,30,0),(69,11,735,31,1),(70,11,262,32,0),(71,11,279,33,1),(72,11,263,34,0),(73,11,1085,35,1),(74,11,1096,36,0),(75,11,725,37,1),(76,11,1097,38,0),(77,11,258,39,1),(78,11,1033,40,0),(79,11,257,41,1),(80,11,266,42,0),(81,11,304,43,1),(82,11,267,44,0),(83,11,1097,45,1),(84,11,268,46,0),(85,11,1096,47,1),(86,11,269,48,0),(87,11,276,49,1),(88,11,795,50,0),(89,11,275,51,1),(90,11,607,52,0),(91,11,274,53,1),(92,11,666,54,0),(93,11,273,55,1),(94,11,619,56,0),(95,11,272,57,1),(96,11,1094,58,0),(97,11,271,59,1),(98,11,270,61,1),(99,11,644,62,0),(100,11,201,63,1),(101,11,670,65,1),(102,11,665,66,0),(103,11,643,67,1),(104,11,645,69,1),(105,11,608,70,0),(106,11,671,71,1),(107,11,200,73,1),(108,11,668,74,0),(109,11,668,75,1),(110,12,1006,0,0),(111,12,1006,1,1),(112,12,1005,2,0),(113,12,609,3,1),(114,12,412,4,0),(115,12,410,5,1),(116,12,451,6,0),(117,12,617,7,1),(118,12,452,8,0),(119,12,99,9,1),(120,12,195,10,0),(121,12,400,11,1),(122,12,1078,12,0),(123,12,799,13,1),(124,12,361,14,0),(125,12,390,15,1),(126,12,362,16,0),(127,12,389,17,1),(128,12,363,18,0),(129,12,388,19,1),(130,12,364,20,0),(131,12,387,21,1),(132,12,365,22,0),(133,12,386,23,1),(134,12,385,24,0),(135,12,741,25,1),(136,12,738,26,0),(137,12,740,27,1),(138,12,739,28,0),(139,12,616,29,1),(140,12,610,30,0),(141,12,615,31,1),(142,12,611,32,0),(143,12,383,33,1),(144,12,797,34,0),(145,12,904,35,1),(146,12,905,36,0),(147,12,382,37,1),(148,12,1066,38,0),(149,12,381,39,1),(150,12,368,40,0),(151,12,380,41,1),(152,12,369,42,0),(153,12,379,43,1),(154,12,370,44,0),(155,12,378,45,1),(156,12,371,46,0),(157,12,377,47,1),(158,12,372,48,0),(159,12,376,49,1),(160,12,373,50,0),(161,12,788,51,1),(162,12,374,52,0),(163,12,742,53,1),(164,12,791,54,0),(165,12,792,55,0),(166,12,776,56,1),(167,12,775,57,0),(168,12,790,58,0),(169,12,790,59,1),(170,14,559,0,0),(171,14,559,1,1),(172,14,111,2,0),(173,14,404,3,1),(174,14,799,4,0),(175,14,48,5,1),(176,14,406,6,0),(177,14,403,7,1),(178,14,407,8,0),(179,14,401,9,1),(180,14,408,10,0),(181,14,395,11,1),(182,14,414,12,0),(183,14,825,13,1),(184,14,415,14,0),(185,14,824,15,1),(186,14,814,16,0),(187,14,876,17,1),(188,14,875,18,0),(189,14,849,19,1),(190,14,849,20,0),(191,14,804,21,1),(192,14,805,22,0),(193,14,848,23,1),(194,14,812,24,0),(195,14,847,25,1),(196,14,815,26,0),(197,14,846,27,1),(198,14,816,28,0),(199,14,845,29,1),(200,14,817,30,0),(201,14,844,31,1),(202,14,818,32,0),(203,14,843,33,1),(204,14,819,34,0),(205,14,794,35,1),(206,14,820,36,0),(207,14,840,37,1),(208,14,821,38,0),(209,14,562,39,1),(210,14,793,40,0),(211,14,838,41,1),(212,14,828,42,0),(213,14,563,43,0),(214,14,837,44,1),(215,14,830,45,0),(216,14,831,46,0),(217,14,827,47,1),(218,14,829,48,0),(219,14,841,49,0),(220,14,836,50,1),(221,14,832,51,0),(222,14,833,52,0),(223,14,835,53,1),(224,14,834,54,0),(225,14,811,55,0),(226,14,811,56,1),(227,15,7,0,0),(228,15,7,1,1),(229,15,1048,2,0),(230,15,986,3,1),(231,15,106,4,0),(232,15,52,5,1),(233,15,454,6,0),(234,15,50,7,1),(235,15,108,8,0),(236,15,3,9,1),(237,15,1051,10,0),(238,15,404,11,1),(239,15,455,12,0),(240,15,422,13,1),(241,15,456,14,0),(242,15,452,15,1),(243,15,457,16,0),(244,15,451,17,1),(245,15,458,18,0),(246,15,450,19,1),(247,15,459,20,0),(248,15,449,21,1),(249,15,84,22,0),(250,15,83,23,1),(251,15,462,24,0),(252,15,447,25,1),(253,15,463,26,0),(254,15,446,27,1),(255,15,464,28,0),(256,15,445,29,1),(257,15,465,30,0),(258,15,444,31,1),(259,15,466,32,0),(260,15,443,33,1),(261,15,467,34,0),(262,15,442,35,1),(263,15,468,36,0),(264,15,441,37,1),(265,15,469,38,0),(266,15,440,39,1),(267,15,470,40,0),(268,15,439,41,1),(269,15,1009,42,0),(270,15,438,43,1),(271,15,471,44,0),(272,15,437,45,1),(273,15,1126,46,0),(274,15,435,47,1),(275,15,474,48,0),(276,15,434,49,1),(277,15,475,50,0),(278,15,433,51,1),(279,15,476,52,0),(280,15,432,53,1),(281,15,477,54,0),(282,15,366,55,1),(283,15,384,56,0),(284,15,430,57,1),(285,15,479,58,0),(286,15,429,59,1),(287,15,480,60,0),(288,15,428,61,1),(289,15,481,62,0),(290,15,951,63,1),(291,15,950,64,0),(292,15,427,65,1),(293,15,482,66,0),(294,15,426,67,1),(295,15,483,68,0),(296,15,425,69,1),(297,15,484,70,0),(298,15,448,71,1),(299,15,485,72,0),(300,15,424,73,1),(301,15,486,74,0),(302,15,423,75,1),(303,15,487,76,0),(304,15,693,77,1),(305,15,488,78,0),(306,15,771,79,1),(307,15,692,81,1),(308,15,691,82,0),(309,15,691,83,1),(310,16,1124,0,0),(311,16,1124,1,1),(312,16,1018,2,0),(313,16,1123,3,1),(314,16,1125,4,0),(315,16,1122,5,1),(316,16,41,6,0),(317,16,119,7,1),(318,16,42,8,0),(319,16,118,9,1),(320,16,43,10,0),(321,16,117,11,1),(322,16,44,12,0),(323,16,116,13,1),(324,16,45,14,0),(325,16,115,15,1),(326,16,46,16,0),(327,16,114,17,1),(328,16,47,18,0),(329,16,113,19,1),(330,16,48,20,0),(331,16,111,21,1),(332,16,295,22,0),(333,16,110,23,1),(334,16,492,24,0),(335,16,543,25,1),(336,16,494,26,0),(337,16,493,27,1),(338,16,495,28,0),(339,16,542,29,1),(340,16,496,30,0),(341,16,541,31,1),(342,16,497,32,0),(343,16,540,33,1),(344,16,498,34,0),(345,16,539,35,1),(346,16,499,36,0),(347,16,538,37,1),(348,16,621,38,0),(349,16,537,39,1),(350,16,500,40,0),(351,16,535,41,1),(352,16,502,42,0),(353,16,534,43,1),(354,16,503,44,0),(355,16,533,45,1),(356,16,504,46,0),(357,16,532,47,1),(358,16,505,48,0),(359,16,531,49,1),(360,16,506,50,0),(361,16,530,51,1),(362,16,507,52,0),(363,16,529,53,1),(364,16,508,54,0),(365,16,528,55,1),(366,16,509,56,0),(367,16,527,57,1),(368,16,510,58,0),(369,16,526,59,1),(370,16,511,60,0),(371,16,525,61,1),(372,16,512,62,0),(373,16,524,63,1),(374,16,513,64,0),(375,16,523,65,1),(376,16,514,66,0),(377,16,522,67,1),(378,16,515,68,0),(379,16,521,69,1),(380,16,516,70,0),(381,16,520,71,1),(382,16,517,72,0),(383,16,519,73,1),(384,16,518,74,0),(385,16,518,75,1),(386,18,813,0,0),(387,18,813,1,1),(388,18,407,2,0),(389,18,403,3,1),(390,18,408,4,0),(391,18,401,5,1),(392,18,796,6,0),(393,18,555,7,1),(394,18,553,8,0),(395,18,554,9,1),(396,18,462,10,0),(397,18,447,11,1),(398,18,463,12,0),(399,18,446,13,1),(400,18,464,14,0),(401,18,445,15,1),(402,18,465,16,0),(403,18,444,17,1),(404,18,466,18,0),(405,18,443,19,1),(406,18,467,20,0),(407,18,442,21,1),(408,18,468,22,0),(409,18,441,23,1),(410,18,469,24,0),(411,18,440,25,1),(412,18,673,26,0),(413,18,674,27,1),(414,18,548,28,0),(415,18,802,29,1),(416,18,618,30,0),(417,18,618,31,1),(418,19,452,0,0),(419,19,452,1,1),(420,19,195,2,0),(421,19,451,3,1),(422,19,295,4,0),(423,19,450,5,1),(424,19,492,6,0),(425,19,457,7,1),(426,19,494,8,0),(427,19,456,9,1),(428,19,495,10,0),(429,19,111,11,1),(430,19,496,12,0),(431,19,390,13,1),(432,19,497,14,0),(433,19,543,15,1),(434,19,498,16,0),(435,19,493,17,1),(436,19,499,18,0),(437,19,542,19,1),(438,19,551,20,0),(439,19,541,21,1),(440,19,556,22,0),(441,19,540,23,1),(442,19,461,24,0),(443,19,539,25,1),(444,19,567,26,0),(445,19,538,27,1),(446,19,1012,28,0),(447,19,558,29,1),(448,19,1101,30,0),(449,19,557,31,1),(450,19,398,33,1),(451,19,571,34,0),(452,19,1014,35,1),(453,19,1102,37,1),(454,19,1104,38,0),(455,19,1013,39,1),(456,19,1105,41,1),(457,19,572,42,0),(458,19,572,43,1),(459,1,547,0,0),(460,1,547,1,1),(461,1,566,2,0),(462,1,546,3,1),(463,1,449,4,0),(464,1,459,5,1),(465,1,450,6,0),(466,1,458,7,1),(467,1,451,8,0),(468,1,457,9,1),(469,1,452,10,0),(470,1,456,11,1),(471,1,422,12,0),(472,1,598,13,1),(473,1,2,14,0),(474,1,981,15,1),(475,1,492,16,0),(476,1,205,17,1),(477,1,127,18,0),(478,1,203,19,1),(479,1,19,20,0),(480,1,129,21,1),(481,1,20,22,0),(482,1,31,23,1),(483,1,569,24,0),(484,1,30,25,1),(485,1,8,26,0),(486,1,29,27,1),(487,1,9,28,0),(488,1,28,29,1),(489,1,10,30,0),(490,1,27,31,1),(491,1,11,32,0),(492,1,26,33,1),(493,1,12,34,0),(494,1,94,35,1),(495,1,14,36,0),(496,1,25,37,1),(497,1,15,38,0),(498,1,16,39,0),(499,1,23,40,1),(500,1,17,41,0),(501,1,18,42,0),(502,1,18,43,1),(503,20,1090,0,0),(504,20,1090,1,1),(505,20,784,2,0),(506,20,1065,3,1),(507,20,89,4,0),(508,20,1077,5,1),(509,20,90,6,0),(510,20,1064,7,1),(511,20,91,8,0),(512,20,1063,9,1),(513,20,92,10,0),(514,20,1062,11,1),(515,20,94,12,0),(516,20,786,13,1),(517,20,81,14,0),(518,20,787,15,1),(519,20,95,16,0),(520,20,71,17,1),(521,20,96,18,0),(522,20,69,19,1),(523,20,97,20,0),(524,20,67,21,1),(525,20,98,22,0),(526,20,66,23,1),(527,20,100,24,0),(528,20,65,25,1),(529,20,101,26,0),(530,20,82,27,1),(531,20,102,28,0),(532,20,64,29,1),(533,20,103,30,0),(534,20,63,31,1),(535,20,104,32,0),(536,20,62,33,1),(537,20,105,34,0),(538,20,61,35,1),(539,20,106,36,0),(540,20,60,37,1),(541,20,107,38,0),(542,20,59,39,1),(543,20,108,40,0),(544,20,58,41,1),(545,20,1087,42,0),(546,20,57,43,1),(547,20,362,44,0),(548,20,56,45,1),(549,20,363,46,0),(550,20,55,47,1),(551,20,364,48,0),(552,20,54,49,1),(553,20,365,50,0),(554,20,53,51,1),(555,20,52,53,1),(556,20,385,54,0),(557,20,51,55,1),(558,20,50,57,1),(559,20,738,58,0),(560,20,3,59,1),(561,20,389,61,1),(562,20,739,62,0),(563,20,388,63,1),(564,20,387,65,1),(565,20,556,66,0),(566,20,386,67,1),(567,20,741,69,1),(568,20,1074,70,0),(569,20,740,71,1),(570,20,557,73,1),(571,20,1075,74,0),(572,20,1075,75,1),(573,21,547,0,0),(574,21,547,1,1),(575,21,566,2,0),(576,21,546,3,1),(577,21,473,4,0),(578,21,437,5,1),(579,21,474,6,0),(580,21,435,7,1),(581,21,475,8,0),(582,21,434,9,1),(583,21,476,10,0),(584,21,433,11,1),(585,21,477,12,0),(586,21,432,13,1),(587,21,384,14,0),(588,21,366,15,1),(589,21,479,16,0),(590,21,430,17,1),(591,21,480,18,0),(592,21,429,19,1),(593,21,481,20,0),(594,21,428,21,1),(595,21,950,22,0),(596,21,951,23,1),(597,21,482,24,0),(598,21,427,25,1),(599,21,483,26,0),(600,21,426,27,1),(601,21,484,28,0),(602,21,425,29,1),(603,21,485,30,0),(604,21,448,31,1),(605,21,486,32,0),(606,21,424,33,1),(607,21,423,35,1),(608,21,487,36,0),(609,21,355,37,1),(610,21,313,39,1),(611,21,488,40,0),(612,21,892,41,1),(613,21,891,43,1),(614,21,490,44,0),(615,21,490,45,1),(616,23,559,0,0),(617,23,559,1,1),(618,23,456,2,0),(619,23,404,3,1),(620,23,457,4,0),(621,23,422,5,1),(622,23,458,6,0),(623,23,452,7,1),(624,23,459,8,0),(625,23,451,9,1),(626,23,476,10,0),(627,23,450,11,1),(628,23,477,12,0),(629,23,449,13,1),(630,23,384,14,0),(631,23,433,15,1),(632,23,880,16,0),(633,23,432,17,1),(634,23,881,18,0),(635,23,366,19,1),(636,23,882,20,0),(637,23,898,21,1),(638,23,883,22,0),(639,23,897,23,1),(640,23,884,24,0),(641,23,896,25,1),(642,23,885,26,0),(643,23,895,27,1),(644,23,202,28,0),(645,23,894,29,1),(646,23,217,30,0),(647,23,893,31,1),(648,23,259,32,0),(649,23,367,33,1),(650,23,605,34,0),(651,23,355,35,1),(652,23,900,36,0),(653,23,313,37,1),(654,23,490,38,0),(655,23,892,39,1),(656,23,624,40,0),(657,23,891,41,1),(658,23,625,42,0),(659,23,890,43,1),(660,23,903,45,1),(661,23,886,46,0),(662,23,889,47,1),(663,23,888,49,1),(664,23,901,50,0),(665,23,887,51,1),(666,23,902,53,1),(667,23,622,54,0),(668,23,622,55,1),(669,24,1022,0,0),(670,24,1022,1,1),(671,24,1079,2,0),(672,24,1021,3,1),(673,24,861,4,0),(674,24,1079,5,1),(675,24,862,6,0),(676,24,1059,7,1),(677,24,863,8,0),(678,24,1058,9,1),(679,24,182,10,0),(680,24,1095,11,1),(681,24,199,12,0),(682,24,199,13,1),(683,24,1095,14,0),(684,24,182,15,1),(685,24,1058,16,0),(686,24,863,17,1),(687,24,1059,18,0),(688,24,862,19,1),(689,24,4,20,0),(690,24,861,21,1),(691,24,188,22,0),(692,24,860,23,1),(693,24,189,24,0),(694,24,32,25,1),(695,24,190,26,0),(696,24,213,27,1),(697,24,191,28,0),(698,24,212,29,1),(699,24,192,30,0),(700,24,211,31,1),(701,24,193,32,0),(702,24,210,33,1),(703,24,194,34,0),(704,24,209,35,1),(705,24,47,36,0),(706,24,208,37,1),(707,24,48,38,0),(708,24,207,39,1),(709,24,1078,40,0),(710,24,598,41,1),(711,24,623,42,0),(712,24,325,43,1),(713,24,296,44,0),(714,24,324,45,1),(715,24,297,46,0),(716,24,323,47,1),(717,24,298,48,0),(718,24,322,49,1),(719,24,974,50,0),(720,24,965,51,1),(721,24,1015,52,0),(722,24,1015,53,1),(723,25,453,0,0),(724,25,453,1,1),(725,25,1048,2,0),(726,25,433,3,1),(727,25,106,4,0),(728,25,432,5,1),(729,25,454,6,0),(730,25,366,7,1),(731,25,108,8,0),(732,25,430,9,1),(733,25,1051,10,0),(734,25,429,11,1),(735,25,455,12,0),(736,25,428,13,1),(737,25,456,14,0),(738,25,951,15,1),(739,25,457,16,0),(740,25,427,17,1),(741,25,458,18,0),(742,25,426,19,1),(743,25,476,20,0),(744,25,425,21,1),(745,25,477,22,0),(746,25,384,23,0),(747,25,448,24,1),(748,25,479,25,0),(749,25,480,26,0),(750,25,424,27,1),(751,25,481,28,0),(752,25,950,29,0),(753,25,423,30,1),(754,25,482,31,0),(755,25,483,32,0),(756,25,693,33,1),(757,25,484,34,0),(758,25,485,35,0),(759,25,771,36,1),(760,25,486,37,0),(761,25,487,38,0),(762,25,692,39,1),(763,25,488,40,0),(764,25,1003,41,0),(765,25,1003,42,1),(766,28,849,0,0),(767,28,1103,1,0),(768,28,819,2,0),(769,28,820,3,0),(770,28,821,4,0),(771,28,802,5,0),(772,28,434,6,0),(773,28,435,7,0),(774,28,437,8,0),(775,28,438,9,0),(776,28,439,10,0),(777,28,440,11,0),(778,28,441,12,0),(779,28,442,13,0),(780,28,443,14,0),(781,28,444,15,0),(782,28,445,16,0),(783,28,446,17,0),(784,28,447,18,0),(785,28,83,19,0),(786,28,554,20,0),(787,28,555,21,0),(788,28,586,22,0),(789,28,210,23,0),(790,28,211,24,0),(791,28,212,25,0),(792,28,213,26,0),(793,28,32,27,0),(794,28,860,28,0),(795,28,849,29,0),(796,29,929,0,0),(797,29,8,1,0),(798,29,132,2,0),(799,29,133,3,0),(800,29,134,4,0),(801,29,135,5,0),(802,29,153,6,0),(803,29,74,7,0),(804,29,308,8,0),(805,29,910,9,0),(806,29,911,10,0),(807,29,912,11,0),(808,29,913,12,0),(809,29,914,13,0),(810,29,994,14,0),(811,29,963,15,0),(812,29,738,16,0),(813,29,739,17,0),(814,29,556,18,0),(815,29,1074,19,0),(816,29,1075,20,0),(817,29,557,21,0),(818,29,740,22,0),(819,29,741,23,0),(820,29,964,24,0),(821,29,1070,25,0),(822,29,1072,26,0),(823,29,965,27,0),(824,29,583,28,0),(825,29,722,29,0),(826,29,958,30,0),(827,29,723,31,0),(828,29,966,32,0),(829,29,967,33,0),(830,29,407,34,0),(831,29,585,35,0),(832,29,553,36,0),(833,29,449,37,0),(834,29,458,38,0),(835,29,929,39,0),(836,2,452,0,0),(837,2,195,1,0),(838,2,295,2,0),(839,2,3,3,0),(840,2,494,4,0),(841,2,1116,5,0),(842,2,1117,6,0),(843,2,358,7,0),(844,2,19,8,0),(845,2,104,9,0),(846,2,985,10,0),(847,2,986,11,0),(848,2,662,12,0),(849,2,663,13,0),(850,2,664,14,0),(851,2,983,15,0),(852,2,452,16,0),(853,30,559,0,0),(854,30,559,1,1),(855,30,455,2,0),(856,30,404,3,1),(857,30,456,4,0),(858,30,422,5,1),(859,30,457,6,0),(860,30,452,7,1),(861,30,458,8,0),(862,30,451,9,1),(863,30,459,10,0),(864,30,450,11,1),(865,30,84,12,0),(866,30,449,13,1),(867,30,462,14,0),(868,30,83,15,1),(869,30,463,16,0),(870,30,447,17,1),(871,30,464,18,0),(872,30,446,19,1),(873,30,465,20,0),(874,30,445,21,1),(875,30,466,22,0),(876,30,444,23,1),(877,30,467,24,0),(878,30,443,25,1),(879,30,468,26,0),(880,30,442,27,1),(881,30,469,28,0),(882,30,441,29,1),(883,30,992,30,0),(884,30,440,31,1),(885,30,997,32,0),(886,30,439,33,1),(887,30,470,34,0),(888,30,997,35,1),(889,30,1009,36,0),(890,30,992,37,1),(891,30,471,38,0),(892,30,438,39,1),(893,30,437,41,1),(894,30,473,42,0),(895,30,473,43,1),(896,31,1,0,0),(897,31,1,1,1),(898,31,457,2,0),(899,31,451,3,1),(900,31,458,4,0),(901,31,450,5,1),(902,31,459,6,0),(903,31,449,7,1),(904,31,1043,8,0),(905,31,1046,9,1),(906,31,1044,10,0),(907,31,1045,11,1),(908,31,1009,12,0),(909,31,438,13,1),(910,31,471,14,0),(911,31,437,15,1),(912,31,1126,16,0),(913,31,435,17,1),(914,31,474,18,0),(915,31,434,19,1),(916,31,475,20,0),(917,31,433,21,1),(918,31,476,22,0),(919,31,432,23,1),(920,31,477,24,0),(921,31,366,25,1),(922,31,384,26,0),(923,31,430,27,1),(924,31,479,28,0),(925,31,881,29,1),(926,31,897,30,0),(927,31,954,31,1),(928,31,945,32,0),(929,31,953,33,1),(930,31,946,34,0),(931,31,952,35,1),(932,31,947,36,0),(933,31,281,37,1),(934,31,302,38,0),(935,31,280,39,1),(936,31,397,40,0),(937,31,391,41,1),(938,31,169,42,0),(939,31,367,43,1),(940,31,202,44,0),(941,31,355,45,1),(942,31,217,46,0),(943,31,313,47,1),(944,31,259,48,0),(945,31,660,49,1),(946,31,248,50,0),(947,31,604,51,1),(948,31,261,52,0),(949,31,949,53,1),(950,31,948,54,0),(951,31,409,55,1),(952,31,196,56,0),(953,31,402,57,1),(954,31,396,58,0),(955,31,431,59,1),(956,31,413,60,0),(957,31,300,61,1),(958,31,399,62,0),(959,31,286,63,1),(960,31,282,64,0),(961,31,283,65,1),(962,31,283,66,0),(963,31,282,67,1),(964,31,286,68,0),(965,31,1040,69,1),(966,31,1041,70,0),(967,31,1068,71,1),(968,31,1067,72,0),(969,31,1038,73,1),(970,31,1039,74,0),(971,31,811,75,1),(972,31,834,76,0),(973,31,834,77,1),(974,33,559,0,0),(975,33,559,1,1),(976,33,492,2,0),(977,33,1087,3,1),(978,33,494,4,0),(979,33,493,5,1),(980,33,495,6,0),(981,33,542,7,1),(982,33,496,8,0),(983,33,541,9,1),(984,33,497,10,0),(985,33,540,11,1),(986,33,498,12,0),(987,33,539,13,1),(988,33,499,14,0),(989,33,538,15,1),(990,33,551,16,0),(991,33,558,17,1),(992,33,556,18,0),(993,33,557,19,1),(994,33,1074,20,0),(995,33,1076,21,0),(996,33,1076,22,1),(997,34,1076,0,0),(998,34,1076,1,1),(999,34,461,2,0),(1000,34,398,3,1),(1001,34,378,4,0),(1002,34,378,5,1),(1003,34,379,6,0),(1004,34,371,7,1),(1005,34,380,8,0),(1006,34,370,9,1),(1007,34,381,10,0),(1008,34,369,11,1),(1009,34,731,12,0),(1010,34,735,13,1),(1011,34,732,14,0),(1012,34,279,15,1),(1013,34,1035,16,0),(1014,34,1085,17,1),(1015,34,1036,18,0),(1016,34,725,19,1),(1017,34,284,20,0),(1018,34,258,21,1),(1019,34,724,22,0),(1020,34,257,23,1),(1021,34,1033,24,0),(1022,34,304,25,1),(1023,34,266,26,0),(1024,34,274,27,1),(1025,34,267,28,0),(1026,34,273,29,1),(1027,34,268,30,0),(1028,34,272,31,1),(1029,34,307,32,0),(1030,34,316,33,1),(1031,34,1080,34,0),(1032,34,315,35,1),(1033,34,1081,36,0),(1034,34,1084,37,1),(1035,34,1108,38,0),(1036,34,1083,39,1),(1037,34,13,40,0),(1038,34,1108,41,1),(1039,34,39,42,0),(1040,34,1082,43,1),(1041,34,1095,44,0),(1042,34,863,45,1),(1043,34,1058,46,0),(1044,34,862,47,1),(1045,34,1059,48,0),(1046,34,861,49,0),(1047,34,861,50,1),(1048,3,34,0,0),(1049,3,34,1,1),(1050,3,35,2,0),(1051,3,126,3,1),(1052,3,36,4,0),(1053,3,125,5,1),(1054,3,37,6,0),(1055,3,124,7,1),(1056,3,38,8,0),(1057,3,123,9,1),(1058,3,13,10,0),(1059,3,122,11,1),(1060,3,39,12,0),(1061,3,121,13,1),(1062,3,40,14,0),(1063,3,120,15,1),(1064,3,41,16,0),(1065,3,119,17,1),(1066,3,42,18,0),(1067,3,118,19,1),(1068,3,43,20,0),(1069,3,117,21,1),(1070,3,44,22,0),(1071,3,116,23,1),(1072,3,45,24,0),(1073,3,115,25,1),(1074,3,46,26,0),(1075,3,114,27,1),(1076,3,47,28,0),(1077,3,113,29,1),(1078,3,49,30,0),(1079,3,111,31,1),(1080,3,219,32,0),(1081,3,110,33,1),(1082,3,3,34,0),(1083,3,981,35,1),(1084,3,50,36,0),(1085,3,108,37,1),(1086,3,51,38,0),(1087,3,107,39,1),(1088,3,52,40,0),(1089,3,106,41,1),(1090,3,53,42,0),(1091,3,105,43,1),(1092,3,54,44,0),(1093,3,104,45,1),(1094,3,55,46,0),(1095,3,103,47,1),(1096,3,56,48,0),(1097,3,102,49,1),(1098,3,57,50,0),(1099,3,101,51,1),(1100,3,58,52,0),(1101,3,100,53,1),(1102,3,59,54,0),(1103,3,98,55,1),(1104,3,60,56,0),(1105,3,97,57,1),(1106,3,61,58,0),(1107,3,96,59,1),(1108,3,62,60,0),(1109,3,95,61,1),(1110,3,63,62,0),(1111,3,81,63,1),(1112,3,64,64,0),(1113,3,94,65,1),(1114,3,82,66,0),(1115,3,92,67,1),(1116,3,65,68,0),(1117,3,91,69,1),(1118,3,66,70,0),(1119,3,90,71,1),(1120,3,67,72,0),(1121,3,89,73,1),(1122,3,69,74,0),(1123,3,784,75,1),(1124,3,71,76,0),(1125,3,87,77,1),(1126,3,787,78,0),(1127,3,86,79,1),(1128,3,73,80,0),(1129,3,145,81,1),(1130,3,75,82,0),(1131,3,138,83,1),(1132,3,76,84,0),(1133,3,128,85,1),(1134,3,77,86,0),(1135,3,112,87,1),(1136,3,78,88,0),(1137,3,79,89,0),(1138,3,109,90,1),(1139,3,85,91,0),(1140,3,93,92,0),(1141,3,93,93,1),(1142,41,458,0,0),(1143,41,458,1,1),(1144,41,450,2,0),(1145,41,457,3,1),(1146,41,451,4,0),(1147,41,456,5,1),(1148,41,452,6,0),(1149,41,111,7,1),(1150,41,195,8,0),(1151,41,598,9,1),(1152,41,219,10,0),(1153,41,981,11,1),(1154,41,3,12,0),(1155,41,205,13,1),(1156,41,127,14,0),(1157,41,203,15,1),(1158,41,197,16,0),(1159,41,129,17,1),(1160,41,198,18,0),(1161,41,31,19,1),(1162,41,990,20,0),(1163,41,30,21,1),(1164,41,568,22,0),(1165,41,922,23,1),(1166,41,569,24,0),(1167,41,8,25,0),(1168,41,29,26,1),(1169,41,9,27,0),(1170,41,10,28,0),(1171,41,28,29,1),(1172,41,924,30,0),(1173,41,11,31,0),(1174,41,921,32,1),(1175,41,12,33,0),(1176,41,925,34,0),(1177,41,27,35,1),(1178,41,15,36,0),(1179,41,920,37,0),(1180,41,920,38,1),(1181,46,80,0,0),(1182,46,80,1,1),(1183,46,195,2,0),(1184,46,110,3,1),(1185,46,219,4,0),(1186,46,981,5,1),(1187,46,492,6,0),(1188,46,108,7,1),(1189,46,50,8,0),(1190,46,107,9,1),(1191,46,51,10,0),(1192,46,106,11,1),(1193,46,52,12,0),(1194,46,105,13,1),(1195,46,53,14,0),(1196,46,104,15,1),(1197,46,54,16,0),(1198,46,103,17,1),(1199,46,55,18,0),(1200,46,102,19,1),(1201,46,56,20,0),(1202,46,156,21,1),(1203,46,131,22,0),(1204,46,58,23,0),(1205,46,155,24,1),(1206,46,59,25,0),(1207,46,60,26,0),(1208,46,154,27,1),(1209,46,61,28,0),(1210,46,62,29,0),(1211,46,153,30,1),(1212,46,63,31,0),(1213,46,157,32,0),(1214,46,1107,33,1),(1215,46,166,34,0),(1216,46,158,35,0),(1217,46,865,36,1),(1218,46,159,37,0),(1219,46,160,38,0),(1220,46,151,39,1),(1221,46,161,40,0),(1222,46,162,41,0),(1223,46,1061,42,1),(1224,46,163,43,0),(1225,46,164,44,0),(1226,46,149,45,1),(1227,46,167,46,0),(1228,46,716,47,0),(1229,46,148,48,1),(1230,46,717,49,0),(1231,46,909,50,0),(1232,46,147,51,1),(1233,46,67,52,0),(1234,46,69,53,0),(1235,46,146,54,1),(1236,46,71,55,0),(1237,46,787,56,0),(1238,46,1050,57,1),(1239,46,786,58,0),(1240,46,143,59,0),(1241,46,143,60,1),(1242,50,927,0,0),(1243,50,106,1,0),(1244,50,454,2,0),(1245,50,455,3,0),(1246,50,456,4,0),(1247,50,928,5,0),(1248,50,8,6,0),(1249,50,931,7,0),(1250,50,939,8,0),(1251,50,62,9,0),(1252,50,717,10,0),(1253,50,94,11,0),(1254,50,942,12,0),(1255,50,943,13,0),(1256,50,944,14,0),(1257,50,104,15,0),(1258,50,929,16,0),(1259,50,927,17,0),(1260,5,860,0,0),(1261,5,860,1,1),(1262,5,861,2,0),(1263,5,1093,3,1),(1264,5,862,4,0),(1265,5,216,5,1),(1266,5,863,6,0),(1267,5,215,7,1),(1268,5,182,8,0),(1269,5,214,9,1),(1270,5,199,10,0),(1271,5,213,11,1),(1272,5,183,12,0),(1273,5,212,13,1),(1274,5,184,14,0),(1275,5,211,15,1),(1276,5,185,16,0),(1277,5,210,17,1),(1278,5,186,18,0),(1279,5,209,19,1),(1280,5,187,20,0),(1281,5,208,21,1),(1282,5,188,22,0),(1283,5,207,23,1),(1284,5,189,24,0),(1285,5,190,25,0),(1286,5,598,26,1),(1287,5,191,27,0),(1288,5,192,28,0),(1289,5,981,29,1),(1290,5,193,30,0),(1291,5,194,31,0),(1292,5,205,32,1),(1293,5,47,33,0),(1294,5,49,34,0),(1295,5,203,35,1),(1296,5,219,36,0),(1297,5,492,37,0),(1298,5,103,38,1),(1299,5,197,39,0),(1300,5,198,40,0),(1301,5,102,41,1),(1302,5,990,42,0),(1303,5,56,43,0),(1304,5,156,44,1),(1305,5,57,45,0),(1306,5,132,46,0),(1307,5,155,47,1),(1308,5,133,48,0),(1309,5,134,49,0),(1310,5,154,50,1),(1311,5,135,51,0),(1312,5,1106,52,0),(1313,5,153,53,1),(1314,5,165,54,0),(1315,5,136,55,0),(1316,5,359,56,1),(1317,5,137,57,0),(1318,5,713,58,0),(1319,5,713,59,1),(1320,6,1005,0,0),(1321,6,1005,1,1),(1322,6,412,2,0),(1323,6,1006,3,1),(1324,6,451,4,0),(1325,6,609,5,1),(1326,6,452,6,0),(1327,6,410,7,1),(1328,6,195,8,0),(1329,6,617,9,1),(1330,6,2,10,0),(1331,6,99,11,1),(1332,6,492,12,0),(1333,6,400,13,1),(1334,6,197,14,0),(1335,6,799,15,1),(1336,6,328,16,0),(1337,6,390,17,1),(1338,6,329,18,0),(1339,6,1051,19,1),(1340,6,330,20,0),(1341,6,205,21,1),(1342,6,331,22,0),(1343,6,358,23,1),(1344,6,332,24,0),(1345,6,357,25,1),(1346,6,333,26,0),(1347,6,356,27,1),(1348,6,334,28,0),(1349,6,354,29,1),(1350,6,1028,30,0),(1351,6,353,31,1),(1352,6,1029,32,0),(1353,6,352,33,1),(1354,6,351,35,1),(1355,6,760,36,0),(1356,6,1027,37,1),(1357,6,1026,39,1),(1358,6,761,40,0),(1359,6,754,41,1),(1360,6,753,43,1),(1361,6,1023,44,0),(1362,6,762,45,1),(1363,6,1025,47,1),(1364,6,1024,48,0),(1365,6,1024,49,1),(1366,7,392,0,0),(1367,7,392,1,1),(1368,7,189,2,0),(1369,7,418,3,1),(1370,7,190,4,0),(1371,7,417,5,1),(1372,7,393,6,0),(1373,7,416,7,1),(1374,7,394,8,0),(1375,7,415,9,1),(1376,7,395,10,0),(1377,7,414,11,1),(1378,7,401,12,0),(1379,7,408,13,1),(1380,7,403,14,0),(1381,7,407,15,1),(1382,7,48,16,0),(1383,7,406,17,1),(1384,7,2,18,0),(1385,7,799,19,1),(1386,7,3,20,0),(1387,7,390,21,1),(1388,7,50,22,0),(1389,7,981,23,1),(1390,7,51,24,0),(1391,7,108,25,1),(1392,7,52,26,0),(1393,7,454,27,1),(1394,7,53,28,0),(1395,7,106,29,1),(1396,7,54,30,0),(1397,7,105,31,1),(1398,7,220,32,0),(1399,7,104,33,1),(1400,7,221,34,0),(1401,7,103,35,1),(1402,7,222,36,0),(1403,7,247,37,1),(1404,7,223,38,0),(1405,7,246,39,1),(1406,7,224,40,0),(1407,7,245,41,1),(1408,7,225,42,0),(1409,7,244,43,1),(1410,7,226,44,0),(1411,7,243,45,1),(1412,7,227,46,0),(1413,7,242,47,1),(1414,7,228,48,0),(1415,7,241,49,1),(1416,7,229,50,0),(1417,7,240,51,1),(1418,7,230,52,0),(1419,7,239,53,1),(1420,7,231,54,0),(1421,7,238,55,1),(1422,7,780,56,0),(1423,7,237,57,1),(1424,7,549,58,0),(1425,7,781,59,1),(1426,7,489,60,0),(1427,7,460,61,1),(1428,7,907,62,0),(1429,7,544,63,1),(1430,7,989,65,1),(1431,7,545,66,0),(1432,7,545,67,1),(1433,8,360,0,0),(1434,8,360,1,1),(1435,8,2,2,0),(1436,8,598,3,1),(1437,8,492,4,0),(1438,8,1051,5,1),(1439,8,197,6,0),(1440,8,205,7,1),(1441,8,328,8,0),(1442,8,358,9,1),(1443,8,329,10,0),(1444,8,357,11,1),(1445,8,330,12,0),(1446,8,356,13,1),(1447,8,331,14,0),(1448,8,354,15,1),(1449,8,332,16,0),(1450,8,353,17,1),(1451,8,333,18,0),(1452,8,352,19,1),(1453,8,334,20,0),(1454,8,351,21,1),(1455,8,335,22,0),(1456,8,350,23,1),(1457,8,336,24,0),(1458,8,349,25,1),(1459,8,337,26,0),(1460,8,348,27,1),(1461,8,338,28,0),(1462,8,347,29,1),(1463,8,339,30,0),(1464,8,340,31,0),(1465,8,346,32,1),(1466,8,341,33,0),(1467,8,342,34,0),(1468,8,345,35,1),(1469,8,343,36,0),(1470,8,344,37,0),(1471,8,344,38,1),(1472,9,6,0,0),(1473,9,6,1,1),(1474,9,48,2,0),(1475,9,110,3,1),(1476,9,295,4,0),(1477,9,543,5,1),(1478,9,492,6,0),(1479,9,756,7,1),(1480,9,757,8,0),(1481,9,755,9,1),(1482,9,758,10,0),(1483,9,1002,11,1),(1484,9,759,12,0),(1485,9,1001,13,0),(1486,9,708,14,1),(1487,9,701,15,0),(1488,9,719,16,0),(1489,9,718,17,1),(1490,9,764,18,0),(1491,9,765,19,0),(1492,9,750,20,1),(1493,9,766,21,0),(1494,9,767,22,0),(1495,9,749,23,1),(1496,9,768,24,0),(1497,9,769,25,0),(1498,9,746,26,1),(1499,9,747,27,0),(1500,9,770,28,0),(1501,9,748,29,1),(1502,9,743,30,0),(1503,9,144,31,0),(1504,9,959,32,1),(1505,9,744,33,0),(1506,9,745,34,0),(1507,9,745,35,1);
+/*!40000 ALTER TABLE `localcommuter_rutalinea` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `localcommuter_sistematransporte`
+--
+
+DROP TABLE IF EXISTS `localcommuter_sistematransporte`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `localcommuter_sistematransporte` (
+  `_id` int(11) NOT NULL,
+  `nombre` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `descripcion` longtext COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `localcommuter_sistematransporte`
+--
+
+LOCK TABLES `localcommuter_sistematransporte` WRITE;
+/*!40000 ALTER TABLE `localcommuter_sistematransporte` DISABLE KEYS */;
+INSERT INTO `localcommuter_sistematransporte` VALUES (1,'EMTPalma','bus palma');
+/*!40000 ALTER TABLE `localcommuter_sistematransporte` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `south_migrationhistory`
+--
+
+DROP TABLE IF EXISTS `south_migrationhistory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `south_migrationhistory` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `app_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `applied` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `south_migrationhistory`
+--
+
+LOCK TABLES `south_migrationhistory` WRITE;
+/*!40000 ALTER TABLE `south_migrationhistory` DISABLE KEYS */;
+/*!40000 ALTER TABLE `south_migrationhistory` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2013-08-20 21:20:55
