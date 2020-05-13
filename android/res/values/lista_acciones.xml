@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lista_acciones">
+        <item>GeoPos</item>
+        <item>TimeTables</item>
+        <item>Acerca</item>
+    </string-array>
+    
+</resources>

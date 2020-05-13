@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LocalCommuter</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_section1">Refresca</string>
+    <string name="title_section2">Timetables</string>
+    <string name="title_section3">Acerca de</string>
+    <string name="title_section4">Centrar</string>
+    <string name="menu_search">buscar</string>
+	<string name="menu_direccion">sentido</string>
+	<string name="menu_nuevo">nuevo</string>    
+	<string name="search_hint">buscar parada</string>
+	<string name="close_stops">paradas cerca</string>
+</resources>

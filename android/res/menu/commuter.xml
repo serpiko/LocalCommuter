@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+<!--     <item -->
+<!--         android:id="@+id/menu_sync" -->
+<!--         android:icon="@android:drawable/stat_notify_sync" -->
+<!--         android:orderInCategory="10" -->
+<!--         android:showAsAction="ifRoom" -->
+<!--         android:title="@string/title_section1"/> -->
+<!--     <item -->
+<!--         android:id="@+id/menu_direccion" -->
+<!-- 		android:icon="@drawable/av_shuffle" -->
+<!--         android:orderInCategory="15" -->
+<!--         android:showAsAction="ifRoom" -->
+<!--         android:title="@string/menu_direccion"/> -->
+<!--     <item -->
+<!--         android:id="@+id/menu_new" -->
+<!--         android:icon="@android:drawable/ic_menu_add" -->
+<!--         android:orderInCategory="20" -->
+<!--         android:showAsAction="ifRoom" -->
+<!--         android:title="@string/menu_nuevo"/> -->
+<!--     <item -->
+<!--         android:id="@+id/timetables" -->
+<!--         android:orderInCategory="25" -->
+<!--         android:showAsAction="ifRoom" -->
+<!--         android:title="@string/title_section2"/> -->
+
+</menu>
