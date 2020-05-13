@@ -1,0 +1,14 @@
+Se lanza localcommuter.
+Se activa GPS
+Explicación ListView de Lineas:
+	-uso de métodos LatLngBound para acotar el mapa en base a una 		lista de markers
+	-Carga del Listado de Paradas onClick
+	-Selección de una línea cerca para ver paradas
+Click en Centrar usuario y jugar con las paradas cercanas
+	-Seleccionar una línea que sepamos que pasa cerca para ver sus 		paradas cercanas
+Buscar Paradas por nombre y por código
+	-Mención a la reutilización de métodos para agrupar la vista de 	mapa a los markers del listado de paradas
+	--busqueda por nombre: avinguda / hotel -> paradas con hotel -> ampliable a POIS
+	--búsqueda por número de parada
+Añadir horarios
+Consultar Horarios
