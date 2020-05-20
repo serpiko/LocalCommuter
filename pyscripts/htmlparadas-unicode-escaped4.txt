@@ -1,28 +1,3 @@
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
@@ -244,7 +219,7 @@
 
 
 
-<!--Google Maps v3--><script src="http://maps.googleapis.com/maps/api/js?hl=es&sensor=false&key=AIzaSyDfTzTt2TtFJFjcp6Ti7oOPH4TK9ZlR6bU" type="text/javascript"></script>
+<!--Google Maps v3--><script src="http://maps.googleapis.com/maps/api/js?hl=es&sensor=false&key= type="text/javascript"></script>
 <script type="text/javascript" src="/EMTPalma/Front/js/gmaps.js"></script>
 <script type="text/javascript" src="/EMTPalma/Front/js/autosuggest2.js"></script>
 <script type="text/javascript" src="/EMTPalma/Front/js/suggestions2.js"></script>
